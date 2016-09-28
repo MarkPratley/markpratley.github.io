@@ -12,17 +12,17 @@ header:
     caption: ""
 widget1:
     title: "Projects"
-    url: 'http://127.0.0.1:4000/projects/'
+    url: '/projects/'
     image: cards.jpg
     text: 'A list of my projects.'
 widget2:
     title: "About"
-    url: 'http://127.0.0.1:4000/about/'
+    url: '/about/'
     image: question_mark_cyan.png
     text: 'Why does this site exist?'
 widget3:
     title: "Contact"
-    url: 'http://127.0.0.1:4000/contact/'
+    url: '/contact/'
     image: contact.jpg
     text: 'Want to contact me?'
 #

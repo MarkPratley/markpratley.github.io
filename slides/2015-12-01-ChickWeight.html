@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chick Growth by Diet</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <link rel="stylesheet" media="all" href="2015-12-01-ChickWeight_files/ioslides-13.5.1/fonts/fonts.css">
+
+  <link rel="stylesheet" media="all" href="2015-12-01-ChickWeight_files/ioslides-13.5.1/theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="2015-12-01-ChickWeight_files/ioslides-13.5.1/theme/css/phone.css">
+
+  <base target="_blank">
+
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                title: 'Chick Growth by Diet',
+                        useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+              },
+
+      // Author information
+      presenters: [
+            {
+        name:  'Mark Pratley' ,
+        company: '',
+        gplus: '',
+        twitter: '',
+        www: '',
+        github: ''
+      },
+            ]
+    };
+  </script>
+
+  <style type="text/css">
+
+    b, strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    slides > slide {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition: opacity 0.6s ease-in 0.4s;
+      -o-transition: opacity 0.6s ease-in 0.4s;
+      transition: opacity 0.6s ease-in 0.4s;
+      opacity: 0;
+    }
+
+  </style>
+
+
+  <script src="2015-12-01-ChickWeight_files/jquery-1.11.0/jquery.min.js"></script>
+  <script src="2015-12-01-ChickWeight_files/detect-resize-0.5.3/jquery.resize.js"></script>
+  <link href="2015-12-01-ChickWeight_files/jquery-ui-1.11.4/jquery-ui.min.css" rel="stylesheet" />
+  <script src="2015-12-01-ChickWeight_files/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+  <script src="2015-12-01-ChickWeight_files/d3-3.5.2/d3.min.js"></script>
+  <script src="2015-12-01-ChickWeight_files/vega-1.4.3/vega.min.js"></script>
+  <script src="2015-12-01-ChickWeight_files/lodash-2.2.1/lodash.min.js"></script>
+  <script>var lodash = _.noConflict();</script>
+  <link href="2015-12-01-ChickWeight_files/ggvis-0.4.2/css/ggvis.css" rel="stylesheet" />
+  <script src="2015-12-01-ChickWeight_files/ggvis-0.4.2/js/ggvis.js"></script>
+
+</head>
+
+<body style="opacity: 0">
+
+<slides>
+
+  <slide class="title-slide segue nobackground">
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+            <p style="margin-top: 6px; margin-left: -2px;">1 December 2015</p>
+          </hgroup>
+  </slide>
+
+<slide class=''><hgroup><h2>Chick Weight</h2></hgroup><article  id="chick-weight">
+
+<h3>A (Non-interactive) Shiny Presentation</h3>
+
+<p>This is a practise presentation using shiny, ggplot and ggvis to explore the ChickWeight dataset.</p>
+
+<p>Unfortunately the interactive shiny/ggvis parts don&#39;t work here, so it&#39;ll just be static for now.</p>
+
+<p>The ChickWeight dataset has 578 rows and 4 columns from an experiment on the effect of diet on early growth of chicks.</p>
+
+<p>First we will explore the dataset and then we will compare the effect of diet on chick weight.</p>
+
+</article></slide><slide class=''><hgroup><h2>Variables</h2></hgroup><article  id="variables">
+
+<ul>
+<li>Weight
+
+<ul>
+<li>A numeric vector giving the body weight of the chick (gm).</li>
+</ul></li>
+<li>Time
+
+<ul>
+<li>A numeric vector giving the number of days since birth when the measurement was made.</li>
+</ul></li>
+<li>Chick
+
+<ul>
+<li>An ordered factor with levels 18 &lt; &#8230; &lt; 48 giving a unique identifier for the chick.</li>
+</ul></li>
+<li>Diet
+
+<ul>
+<li>A factor with levels 1-4 indicating which experimental diet the chick received.</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Summary of the Data</h2></hgroup><article  id="summary-of-the-data">
+
+<pre class = 'prettyprint lang-r'>summary(cw)</pre>
+
+<pre >##      weight           Time           Chick     Diet   
+##  Min.   : 35.0   Min.   : 0.00   13     : 12   1:220  
+##  1st Qu.: 63.0   1st Qu.: 4.00   9      : 12   2:120  
+##  Median :103.0   Median :10.00   20     : 12   3:120  
+##  Mean   :121.8   Mean   :10.72   10     : 12   4:118  
+##  3rd Qu.:163.8   3rd Qu.:16.00   17     : 12          
+##  Max.   :373.0   Max.   :21.00   19     : 12          
+##                                  (Other):506</pre>
+
+</article></slide><slide class=''><hgroup><h2>Weight over Time (Hoverable)</h2></hgroup><article  id="weight-over-time-hoverable">
+
+<pre >## Warning: Can&#39;t output dynamic/interactive ggvis plots in a knitr document.
+## Generating a static (non-dynamic, non-interactive) version of the plot.</pre>
+
+<p><div id="plot_id899234459-container" class="ggvis-output-container">
+<div id="plot_id899234459" class="ggvis-output"></div>
+<div class="plot-gear-icon">
+<nav class="ggvis-control">
+<a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;"></a>
+<ul class="ggvis-dropdown">
+<li>
+Renderer: 
+<a id="plot_id899234459_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id899234459" data-renderer="svg">SVG</a>
+ | 
+<a id="plot_id899234459_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id899234459" data-renderer="canvas">Canvas</a>
+</li>
+<li>
+<a id="plot_id899234459_download" class="ggvis-download" data-plot-id="plot_id899234459">Download</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<script type="text/javascript">
+var plot_id899234459_spec = {
+  "data": [
+    {
+      "name": ".0/group_by1/boxplot2/align3_flat",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "Time": "number",
+          "min_": "number",
+          "max_": "number",
+          "xmin_": "number",
+          "xmax_": "number",
+          "lower_": "number",
+          "upper_": "number",
+          "median_": "number"
+        }
+      },
+      "values": "\"Time\",\"min_\",\"max_\",\"xmin_\",\"xmax_\",\"lower_\",\"upper_\",\"median_\"\n0,40,43,-0.5,0.5,41,42,41\n2,44,55,1.5,2.5,48,51,49\n4,48,69,3.5,4.5,57,63,61\n6,51,96,5.5,6.5,68,80,74\n8,57,125,7.5,8.5,83,102,90\n10,51,163,9.5,10.5,93,124,109\n12,54,217,11.5,12.5,108,152,134\n14,68,192,13.5,14.5,120.5,167,146.5\n16,71,275,15.5,16.5,143.5,197,169\n18,72,332,17.5,18.5,152.5,230.5,187\n20,76,361,19.5,20.5,161,259,204\n21,74,373,20.5,21.5,167,266,205"
+    },
+    {
+      "name": ".0/group_by1/boxplot2/align3",
+      "source": ".0/group_by1/boxplot2/align3_flat",
+      "transform": [
+        {
+          "type": "treefacet",
+          "keys": [
+            "data.Time"
+          ]
+        }
+      ]
+    },
+    {
+      "name": ".0/group_by1/boxplot2/align3/boxplot_outliers4_flat",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "Time": "number",
+          "value_": "number"
+        }
+      },
+      "values": "\"Time\",\"value_\"\n0,39\n0,39\n0,39\n0,39\n0,39\n0,39\n0,39\n2,39\n2,42\n2,35\n8,131\n14,240\n14,238\n16,287"
+    },
+    {
+      "name": ".0/group_by1/boxplot2/align3/boxplot_outliers4",
+      "source": ".0/group_by1/boxplot2/align3/boxplot_outliers4_flat",
+      "transform": [
+        {
+          "type": "treefacet",
+          "keys": [
+            "data.Time"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "scale/x",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "domain": "number"
+        }
+      },
+      "values": "\"domain\"\n-1.6\n22.6"
+    },
+    {
+      "name": "scale/y",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "domain": "number"
+        }
+      },
+      "values": "\"domain\"\n18.1\n389.9"
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "domain": {
+        "data": "scale/x",
+        "field": "data.domain"
+      },
+      "zero": false,
+      "nice": false,
+      "clamp": false,
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "domain": {
+        "data": "scale/y",
+        "field": "data.domain"
+      },
+      "zero": false,
+      "nice": false,
+      "clamp": false,
+      "range": "height"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "data": ".0/group_by1/boxplot2/align3"
+      },
+      "marks": [
+        {
+          "type": "rect",
+          "properties": {
+            "update": {
+              "stroke": {
+                "value": "#000000"
+              },
+              "fill": {
+                "value": "white"
+              },
+              "x": {
+                "scale": "x",
+                "field": "data.Time"
+              },
+              "y": {
+                "scale": "y",
+                "field": "data.min_"
+              },
+              "y2": {
+                "scale": "y",
+                "field": "data.max_"
+              },
+              "width": {
+                "value": 0.5
+              }
+            },
+            "ggvis": {
+              "data": {
+                "value": ".0/group_by1/boxplot2/align3"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "from": {
+        "data": ".0/group_by1/boxplot2/align3"
+      },
+      "marks": [
+        {
+          "type": "rect",
+          "properties": {
+            "update": {
+              "stroke": {
+                "value": "#000000"
+              },
+              "fill": {
+                "value": "white"
+              },
+              "x": {
+                "scale": "x",
+                "field": "data.xmin_"
+              },
+              "x2": {
+                "scale": "x",
+                "field": "data.xmax_"
+              },
+              "y": {
+                "scale": "y",
+                "field": "data.lower_"
+              },
+              "y2": {
+                "scale": "y",
+                "field": "data.upper_"
+              }
+            },
+            "ggvis": {
+              "data": {
+                "value": ".0/group_by1/boxplot2/align3"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "from": {
+        "data": ".0/group_by1/boxplot2/align3"
+      },
+      "marks": [
+        {
+          "type": "rect",
+          "properties": {
+            "update": {
+              "stroke": {
+                "value": "#000000"
+              },
+              "fill": {
+                "value": "white"
+              },
+              "x": {
+                "scale": "x",
+                "field": "data.xmin_"
+              },
+              "x2": {
+                "scale": "x",
+                "field": "data.xmax_"
+              },
+              "y": {
+                "scale": "y",
+                "field": "data.median_"
+              },
+              "height": {
+                "value": 1
+              }
+            },
+            "ggvis": {
+              "data": {
+                "value": ".0/group_by1/boxplot2/align3"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "from": {
+        "data": ".0/group_by1/boxplot2/align3/boxplot_outliers4"
+      },
+      "marks": [
+        {
+          "type": "symbol",
+          "properties": {
+            "update": {
+              "size": {
+                "value": 50
+              },
+              "fill": {
+                "value": "black"
+              },
+              "x": {
+                "scale": "x",
+                "field": "data.Time"
+              },
+              "y": {
+                "scale": "y",
+                "field": "data.value_"
+              }
+            },
+            "ggvis": {
+              "data": {
+                "value": ".0/group_by1/boxplot2/align3/boxplot_outliers4"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [],
+  "axes": [
+    {
+      "type": "x",
+      "scale": "x",
+      "orient": "bottom",
+      "layer": "back",
+      "grid": true,
+      "title": "Time"
+    },
+    {
+      "type": "y",
+      "scale": "y",
+      "orient": "left",
+      "layer": "back",
+      "grid": true,
+      "title": "weight"
+    }
+  ],
+  "padding": null,
+  "ggvis_opts": {
+    "keep_aspect": false,
+    "resizable": true,
+    "padding": {},
+    "duration": 250,
+    "renderer": "svg",
+    "hover_duration": 0,
+    "width": 720,
+    "height": 432
+  },
+  "handlers": null
+};
+ggvis.getPlot("plot_id899234459").parseSpec(plot_id899234459_spec);
+</script></p>
+
+</article></slide><slide class=''><hgroup><h2>Weight Density Plot</h2></hgroup><article  id="weight-density-plot">
+
+<p><div id="plot_id304488207-container" class="ggvis-output-container">
+<div id="plot_id304488207" class="ggvis-output"></div>
+<div class="plot-gear-icon">
+<nav class="ggvis-control">
+<a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;"></a>
+<ul class="ggvis-dropdown">
+<li>
+Renderer: 
+<a id="plot_id304488207_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id304488207" data-renderer="svg">SVG</a>
+ | 
+<a id="plot_id304488207_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id304488207" data-renderer="canvas">Canvas</a>
+</li>
+<li>
+<a id="plot_id304488207_download" class="ggvis-download" data-plot-id="plot_id304488207">Download</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<script type="text/javascript">
+var plot_id304488207_spec = {
+  "data": [
+    {
+      "name": ".0/density1",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "pred_": "number",
+          "resp_": "number"
+        }
+      },
+      "values": "\"pred_\",\"resp_\"\n-18.7868965276859,1.0052083956697e-05\n-17.0395483196256,1.39179116396952e-05\n-15.2922001115653,1.90941543356883e-05\n-13.544851903505,2.59529170093078e-05\n-11.7975036954447,3.49944082324414e-05\n-10.0501554873845,4.67050435520357e-05\n-8.30280727932419,6.18943621993656e-05\n-6.55545907126391,8.11344894656255e-05\n-4.80811086320363,0.000105674444019713\n-3.06076265514334,0.00013608909452718\n-1.31341444708306,0.000174213383515538\n0.433933760977219,0.000220467571659368\n2.1812819690375,0.0002774139694411\n3.92863017709778,0.000345076360996856\n5.67597838515806,0.000426846889999718\n7.42332659321834,0.000522036946994346\n9.17067480127863,0.000634887612966048\n10.9180230093389,0.000763648471131368\n12.6653712173992,0.000913297468831615\n14.4127194254595,0.00108090247322708\n16.1600676335198,0.00127132856112255\n17.90741584158,0.00148096990600072\n19.6547640496403,0.0017135908595609\n21.4021122577006,0.00196526317831371\n23.1494604657609,0.00223806567272189\n24.8968086738212,0.00252784533930453\n26.6441568818814,0.00283472847148859\n28.3915050899417,0.00315444025226338\n30.138853298002,0.0034852095908456\n31.8862015060623,0.00382273572934115\n33.6335497141226,0.0041637569873787\n35.3808979221828,0.00450402654703858\n37.1282461302431,0.00483949776378445\n38.8755943383034,0.00516603841536493\n40.6229425463637,0.00547969283576421\n42.370290754424,0.005776487854106\n44.1176389624842,0.00605343126472344\n45.8649871705445,0.00630674517383077\n47.6123353786048,0.0065350958050841\n49.3596835866651,0.00673493863050486\n51.1070317947254,0.00690698615629212\n52.8543800027857,0.00704797590282834\n54.6017282108459,0.00716069213174238\n56.3490764189062,0.00724221793168433\n58.0964246269665,0.00729709807291033\n59.8437728350268,0.00732283744671053\n61.5911210430871,0.00732518378375216\n63.3384692511474,0.00730214411987888\n65.0858174592076,0.00725998991861353\n66.8331656672679,0.00719730141080518\n68.5805138753282,0.00712010987649917\n70.3278620833885,0.00702788151755364\n72.0752102914487,0.0069255676772445\n73.822558499509,0.00681362931116695\n75.5699067075693,0.0066956383687438\n77.3172549156296,0.00657268046896508\n79.0646031236899,0.00644715619432171\n80.8119513317502,0.00632034937800673\n82.5592995398104,0.00619373930004658\n84.3066477478707,0.0060684982911004\n86.053995955931,0.00594543573391071\n87.8013441639913,0.00582542940440561\n89.5486923720516,0.00570884551421464\n91.2960405801118,0.00559620000487543\n93.0433887881721,0.00548760510006312\n94.7907369962324,0.00538323729729711\n96.5380852042927,0.00528310338062356\n98.285433412353,0.00518711746137942\n100.032781620413,0.0050952916740111\n101.780129828474,0.00500737255230907\n103.527478036534,0.00492345609080562\n105.274826244594,0.00484320191187745\n107.022174452654,0.00476684159318174\n108.769522660715,0.00469399307915383\n110.516870868775,0.00462505223401963\n112.264219076835,0.00455959743628239\n114.011567284896,0.00449819566678225\n115.758915492956,0.00444035058136411\n117.506263701016,0.00438678377547239\n119.253611909076,0.00433686848316018\n121.000960117137,0.00429143803144572\n122.748308325197,0.00424969826038776\n124.495656533257,0.00421247445942427\n126.243004741317,0.00417886450115256\n127.990352949378,0.0041494588103859\n129.737701157438,0.00412336536732692\n131.485049365498,0.00410082848764949\n133.232397573559,0.00408097309405083\n134.979745781619,0.00406367301366577\n136.727093989679,0.00404808357601253\n138.474442197739,0.00403374624023323\n140.2217904058,0.00401986360851908\n141.96913861386,0.00400574819670469\n143.71648682192,0.00399066864723336\n145.463835029981,0.00397386359674562\n147.211183238041,0.00395468838068378\n148.958531446101,0.00393248546509604\n150.705879654161,0.00390672000345847\n152.453227862222,0.00387700010003804\n154.200576070282,0.00384292630898017\n155.947924278342,0.00380447962184529\n157.695272486403,0.00376142227541589\n159.442620694463,0.00371413265688784\n161.189968902523,0.00366255751765244\n162.937317110583,0.00360740525627578\n164.684665318644,0.00354882020341571\n166.432013526704,0.0034876950877912\n168.179361734764,0.00342436790387188\n169.926709942825,0.00335972557685715\n171.674058150885,0.00329427292946915\n173.421406358945,0.00322870235254481\n175.168754567005,0.00316363360009275\n176.916102775066,0.00309942504782564\n178.663450983126,0.00303673275853539\n180.410799191186,0.00297555159673311\n182.158147399246,0.00291641315592291\n183.905495607307,0.00285905931015443\n185.652843815367,0.00280378849652301\n187.400192023427,0.00275019643298711\n189.147540231488,0.0026983305464985\n190.894888439548,0.00264774249215699\n192.642236647608,0.00259828524502668\n194.389584855668,0.00254954967997976\n196.136933063729,0.00250129568222195\n197.884281271789,0.00245320984155007\n199.631629479849,0.00240506668176951\n201.37897768791,0.00235667618209733\n203.12632589597,0.0023079067918587\n204.87367410403,0.00225869358522242\n206.62102231209,0.00220902919531131\n208.368370520151,0.00215895583970048\n210.115718728211,0.00210857036245079\n211.863066936271,0.00205799285207877\n213.610415144332,0.00200737035173267\n215.357763352392,0.00195686923209861\n217.105111560452,0.00190662407122683\n218.852459768512,0.00185682193200545\n220.599807976573,0.00180753719618569\n222.347156184633,0.00175896423027988\n224.094504392693,0.00171109698656517\n225.841852600753,0.00166413868712846\n227.589200808814,0.00161800800524598\n229.336549016874,0.00157293189569257\n231.083897224934,0.00152877067994785\n232.831245432995,0.0014857973476505\n234.578593641055,0.00144384070354548\n236.325941849115,0.00140319561350931\n238.073290057175,0.00136370543810515\n239.820638265236,0.00132566619127205\n241.567986473296,0.00128893568503232\n243.315334681356,0.0012537873609908\n245.062682889417,0.00122008251582218\n246.810031097477,0.00118803842712232\n248.557379305537,0.00115750971071305\n250.304727513597,0.00112862644787835\n252.052075721658,0.00110123266959462\n253.799423929718,0.00107535678656833\n255.546772137778,0.00105083658106578\n257.294120345839,0.00102760813539242\n259.041468553899,0.00100551411452361\n260.788816761959,0.000984428695939789\n262.536164970019,0.000964213659813944\n264.28351317808,0.000944721694848873\n266.03086138614,0.000925846710278441\n267.7782095942,0.000907456175262808\n269.525557802261,0.000889484422534033\n271.272906010321,0.000871834774645376\n273.020254218381,0.000854483751702738\n274.767602426441,0.000837372542022754\n276.514950634502,0.000820515154696841\n278.262298842562,0.000803877410500415\n280.009647050622,0.000787501220304236\n281.756995258683,0.000771357262279728\n283.504343466743,0.000755503246264926\n285.251691674803,0.000739897667325153\n286.999039882863,0.000724601805735873\n288.746388090924,0.000709556518657696\n290.493736298984,0.00069480796012776\n292.241084507044,0.000680289721130177\n293.988432715104,0.000666021579220312\n295.735780923165,0.000651938075973113\n297.483129131225,0.000638032582049829\n299.230477339285,0.000624245141371507\n300.977825547346,0.000610548089110769\n302.725173755406,0.000596889119800408\n304.472521963466,0.000583226698685374\n306.219870171526,0.000569515699307408\n307.967218379587,0.000555708263114462\n309.714566587647,0.000541764514173468\n311.461914795707,0.000527638150137432\n313.209263003768,0.000513292992618753\n314.956611211828,0.000498693036847628\n316.703959419888,0.000483806403604852\n318.451307627948,0.000468616859736202\n320.198655836009,0.000453100733172419\n321.946004044069,0.000437270103423992\n323.693352252129,0.000421116885193301\n325.44070046019,0.000404685917709695\n327.18804866825,0.000387994607755201\n328.93539687631,0.00037111731680682\n330.68274508437,0.00035410743574976\n332.430093292431,0.000337055584183718\n334.177441500491,0.000320059644498354\n335.924789708551,0.000303203653545815\n337.672137916612,0.000286633872497439\n339.419486124672,0.000270399235864798\n341.166834332732,0.000254691631205934\n342.914182540792,0.000239502283767263\n344.661530748853,0.000225043847341952\n346.408878956913,0.000211252654465702\n348.156227164973,0.000198319591880869\n349.903575373034,0.000186143679511809\n351.650923581094,0.00017486419293451\n353.398271789154,0.000164355457020246\n355.145619997214,0.000154691695194825\n356.892968205275,0.000145737151755071\n358.640316413335,0.000137502970676116\n360.387664621395,0.000129857490441928\n362.135012829455,0.00012276397897118\n363.882361037516,0.000116106673620215\n365.629709245576,0.000109823850588208\n367.377057453636,0.000103823967257909\n369.124405661697,9.80438592378101e-05\n370.871753869757,9.24207689743549e-05\n372.619102077817,8.69079978682799e-05\n374.366450285877,8.14727533722023e-05\n376.113798493938,7.60931739248595e-05\n377.861146701998,7.07649462897605e-05\n379.608494910058,6.54891971989196e-05\n381.355843118119,6.02867381135773e-05\n383.103191326179,5.51718634417634e-05\n384.850539534239,5.01859885849842e-05\n386.597887742299,4.53428679588779e-05\n388.34523595036,4.06993862805153e-05\n390.09258415842,3.62556269647526e-05\n391.83993236648,3.2078621818236e-05\n393.587280574541,2.81457564394643e-05\n395.334628782601,2.45290524401295e-05\n397.081976990661,2.11815289170531e-05\n398.829325198721,1.8171135089196e-05\n400.576673406782,1.54362570698849e-05\n402.324021614842,1.30273902404969e-05\n404.071369822902,1.08824372939334e-05\n405.818718030962,9.03124365431879e-06\n407.566066239023,7.41647442967895e-06\n409.313414447083,6.05018464299148e-06\n411.060762655143,4.88324263510482e-06\n412.808110863204,3.91464256127462e-06\n414.555459071264,3.10497724012336e-06\n416.302807279324,2.44528921586902e-06\n418.050155487384,1.90582478304649e-06\n419.797503695445,1.47409506941535e-06\n421.544851903505,1.12886908427019e-06\n423.292200111565,8.57320540120607e-07\n425.039548319626,6.4509273891957e-07\n426.786896527686,4.80912700377931e-07"
+    },
+    {
+      "name": "scale/x",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "domain": "number"
+        }
+      },
+      "values": "\"domain\"\n-41.0655861804545\n449.065586180454"
+    },
+    {
+      "name": "scale/y",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "domain": "number"
+        }
+      },
+      "values": "\"domain\"\n-0.000366259189187608\n0.00769144297293977"
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "domain": {
+        "data": "scale/x",
+        "field": "data.domain"
+      },
+      "zero": false,
+      "nice": false,
+      "clamp": false,
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "domain": {
+        "data": "scale/y",
+        "field": "data.domain"
+      },
+      "zero": false,
+      "nice": false,
+      "clamp": false,
+      "range": "height"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "properties": {
+        "update": {
+          "fill": {
+            "value": "#333333"
+          },
+          "y2": {
+            "scale": "y",
+            "value": 0
+          },
+          "fillOpacity": {
+            "value": 0.2
+          },
+          "x": {
+            "scale": "x",
+            "field": "data.pred_"
+          },
+          "y": {
+            "scale": "y",
+            "field": "data.resp_"
+          },
+          "stroke": {
+            "value": "transparent"
+          }
+        },
+        "ggvis": {
+          "data": {
+            "value": ".0/density1"
+          }
+        }
+      },
+      "from": {
+        "data": ".0/density1"
+      }
+    },
+    {
+      "type": "line",
+      "properties": {
+        "update": {
+          "stroke": {
+            "value": "#000000"
+          },
+          "x": {
+            "scale": "x",
+            "field": "data.pred_"
+          },
+          "y": {
+            "scale": "y",
+            "field": "data.resp_"
+          },
+          "fill": {
+            "value": "transparent"
+          }
+        },
+        "ggvis": {
+          "data": {
+            "value": ".0/density1"
+          }
+        }
+      },
+      "from": {
+        "data": ".0/density1"
+      }
+    }
+  ],
+  "legends": [],
+  "axes": [
+    {
+      "type": "x",
+      "scale": "x",
+      "orient": "bottom",
+      "layer": "back",
+      "grid": true,
+      "title": "weight"
+    },
+    {
+      "type": "y",
+      "scale": "y",
+      "orient": "left",
+      "layer": "back",
+      "grid": true,
+      "title": "density"
+    }
+  ],
+  "padding": null,
+  "ggvis_opts": {
+    "keep_aspect": false,
+    "resizable": true,
+    "padding": {},
+    "duration": 250,
+    "renderer": "svg",
+    "hover_duration": 0,
+    "width": 720,
+    "height": 432
+  },
+  "handlers": null
+};
+ggvis.getPlot("plot_id304488207").parseSpec(plot_id304488207_spec);
+</script></p>
+
+</article></slide><slide class=''><hgroup><h2>Growth Plot for Individual Chicks</h2></hgroup><article  id="growth-plot-for-individual-chicks">
+
+<p><img src="2015-12-01-ChickWeight_files/figure-html/growth-1.png" title="" alt="" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2>Summary</h2></hgroup><article  id="summary">
+
+<p>From our quick data exploration we can see that there are:</p>
+
+<ul>
+<li>50 chicks</li>
+<li>On 4 Diets</li>
+<li><p>Over 21 days</p></li>
+<li>Weight
+
+<ul>
+<li>Range 0 &lt; w &lt; 400</li>
+<li>Mean of 121</li>
+<li>Median of 103</li>
+<li>Standard deviation of 71</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Scatter Plot of Growth Data</h2></hgroup><article  id="scatter-plot-of-growth-data">
+
+<pre >## Warning: Can&#39;t output dynamic/interactive ggvis plots in a knitr document.
+## Generating a static (non-dynamic, non-interactive) version of the plot.</pre>
+
+<p><div id="plot_id307230933-container" class="ggvis-output-container">
+<div id="plot_id307230933" class="ggvis-output"></div>
+<div class="plot-gear-icon">
+<nav class="ggvis-control">
+<a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;"></a>
+<ul class="ggvis-dropdown">
+<li>
+Renderer: 
+<a id="plot_id307230933_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id307230933" data-renderer="svg">SVG</a>
+ | 
+<a id="plot_id307230933_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id307230933" data-renderer="canvas">Canvas</a>
+</li>
+<li>
+<a id="plot_id307230933_download" class="ggvis-download" data-plot-id="plot_id307230933">Download</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<script type="text/javascript">
+var plot_id307230933_spec = {
+  "data": [
+    {
+      "name": ".0",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "Time": "number",
+          "weight": "number"
+        }
+      },
+      "values": "\"Time\",\"weight\"\n0,42\n2,51\n4,59\n6,64\n8,76\n10,93\n12,106\n14,125\n16,149\n18,171\n20,199\n21,205\n0,40\n2,49\n4,58\n6,72\n8,84\n10,103\n12,122\n14,138\n16,162\n18,187\n20,209\n21,215\n0,43\n2,39\n4,55\n6,67\n8,84\n10,99\n12,115\n14,138\n16,163\n18,187\n20,198\n21,202\n0,42\n2,49\n4,56\n6,67\n8,74\n10,87\n12,102\n14,108\n16,136\n18,154\n20,160\n21,157\n0,41\n2,42\n4,48\n6,60\n8,79\n10,106\n12,141\n14,164\n16,197\n18,199\n20,220\n21,223\n0,41\n2,49\n4,59\n6,74\n8,97\n10,124\n12,141\n14,148\n16,155\n18,160\n20,160\n21,157\n0,41\n2,49\n4,57\n6,71\n8,89\n10,112\n12,146\n14,174\n16,218\n18,250\n20,288\n21,305\n0,42\n2,50\n4,61\n6,71\n8,84\n10,93\n12,110\n14,116\n16,126\n18,134\n20,125\n0,42\n2,51\n4,59\n6,68\n8,85\n10,96\n12,90\n14,92\n16,93\n18,100\n20,100\n21,98\n0,41\n2,44\n4,52\n6,63\n8,74\n10,81\n12,89\n14,96\n16,101\n18,112\n20,120\n21,124\n0,43\n2,51\n4,63\n6,84\n8,112\n10,139\n12,168\n14,177\n16,182\n18,184\n20,181\n21,175\n0,41\n2,49\n4,56\n6,62\n8,72\n10,88\n12,119\n14,135\n16,162\n18,185\n20,195\n21,205\n0,41\n2,48\n4,53\n6,60\n8,65\n10,67\n12,71\n14,70\n16,71\n18,81\n20,91\n21,96\n0,41\n2,49\n4,62\n6,79\n8,101\n10,128\n12,164\n14,192\n16,227\n18,248\n20,259\n21,266\n0,41\n2,49\n4,56\n6,64\n8,68\n10,68\n12,67\n14,68\n0,41\n2,45\n4,49\n6,51\n8,57\n10,51\n12,54\n0,42\n2,51\n4,61\n6,72\n8,83\n10,89\n12,98\n14,103\n16,113\n18,123\n20,133\n21,142\n0,39\n2,35\n0,43\n2,48\n4,55\n6,62\n8,65\n10,71\n12,82\n14,88\n16,106\n18,120\n20,144\n21,157\n0,41\n2,47\n4,54\n6,58\n8,65\n10,73\n12,77\n14,89\n16,98\n18,107\n20,115\n21,117\n0,40\n2,50\n4,62\n6,86\n8,125\n10,163\n12,217\n14,240\n16,275\n18,307\n20,318\n21,331\n0,41\n2,55\n4,64\n6,77\n8,90\n10,95\n12,108\n14,111\n16,131\n18,148\n20,164\n21,167\n0,43\n2,52\n4,61\n6,73\n8,90\n10,103\n12,127\n14,135\n16,145\n18,163\n20,170\n21,175\n0,42\n2,52\n4,58\n6,74\n8,66\n10,68\n12,70\n14,71\n16,72\n18,72\n20,76\n21,74\n0,40\n2,49\n4,62\n6,78\n8,102\n10,124\n12,146\n14,164\n16,197\n18,231\n20,259\n21,265\n0,42\n2,48\n4,57\n6,74\n8,93\n10,114\n12,136\n14,147\n16,169\n18,205\n20,236\n21,251\n0,39\n2,46\n4,58\n6,73\n8,87\n10,100\n12,115\n14,123\n16,144\n18,163\n20,185\n21,192\n0,39\n2,46\n4,58\n6,73\n8,92\n10,114\n12,145\n14,156\n16,184\n18,207\n20,212\n21,233\n0,39\n2,48\n4,59\n6,74\n8,87\n10,106\n12,134\n14,150\n16,187\n18,230\n20,279\n21,309\n0,42\n2,48\n4,59\n6,72\n8,85\n10,98\n12,115\n14,122\n16,143\n18,151\n20,157\n21,150\n0,42\n2,53\n4,62\n6,73\n8,85\n10,102\n12,123\n14,138\n16,170\n18,204\n20,235\n21,256\n0,41\n2,49\n4,65\n6,82\n8,107\n10,129\n12,159\n14,179\n16,221\n18,263\n20,291\n21,305\n0,39\n2,50\n4,63\n6,77\n8,96\n10,111\n12,137\n14,144\n16,151\n18,146\n20,156\n21,147\n0,41\n2,49\n4,63\n6,85\n8,107\n10,134\n12,164\n14,186\n16,235\n18,294\n20,327\n21,341\n0,41\n2,53\n4,64\n6,87\n8,123\n10,158\n12,201\n14,238\n16,287\n18,332\n20,361\n21,373\n0,39\n2,48\n4,61\n6,76\n8,98\n10,116\n12,145\n14,166\n16,198\n18,227\n20,225\n21,220\n0,41\n2,48\n4,56\n6,68\n8,80\n10,83\n12,103\n14,112\n16,135\n18,157\n20,169\n21,178\n0,41\n2,49\n4,61\n6,74\n8,98\n10,109\n12,128\n14,154\n16,192\n18,232\n20,280\n21,290\n0,42\n2,50\n4,61\n6,78\n8,89\n10,109\n12,130\n14,146\n16,170\n18,214\n20,250\n21,272\n0,41\n2,55\n4,66\n6,79\n8,101\n10,120\n12,154\n14,182\n16,215\n18,262\n20,295\n21,321\n0,42\n2,51\n4,66\n6,85\n8,103\n10,124\n12,155\n14,153\n16,175\n18,184\n20,199\n21,204\n0,42\n2,49\n4,63\n6,84\n8,103\n10,126\n12,160\n14,174\n16,204\n18,234\n20,269\n21,281\n0,42\n2,55\n4,69\n6,96\n8,131\n10,157\n12,184\n14,188\n16,197\n18,198\n20,199\n21,200\n0,42\n2,51\n4,65\n6,86\n8,103\n10,118\n12,127\n14,138\n16,145\n18,146\n0,41\n2,50\n4,61\n6,78\n8,98\n10,117\n12,135\n14,141\n16,147\n18,174\n20,197\n21,196\n0,40\n2,52\n4,62\n6,82\n8,101\n10,120\n12,144\n14,156\n16,173\n18,210\n20,231\n21,238\n0,41\n2,53\n4,66\n6,79\n8,100\n10,123\n12,148\n14,157\n16,168\n18,185\n20,210\n21,205\n0,39\n2,50\n4,62\n6,80\n8,104\n10,125\n12,154\n14,170\n16,222\n18,261\n20,303\n21,322\n0,40\n2,53\n4,64\n6,85\n8,108\n10,128\n12,152\n14,166\n16,184\n18,203\n20,233\n21,237\n0,41\n2,54\n4,67\n6,84\n8,105\n10,122\n12,155\n14,175\n16,205\n18,234\n20,264\n21,264"
+    },
+    {
+      "name": ".0/model_prediction1",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "pred_": "number",
+          "resp_": "number"
+        }
+      },
+      "values": "\"pred_\",\"resp_\"\n0,40.583815132523\n0.265822784810127,41.6433613036249\n0.531645569620253,42.7432340394315\n0.79746835443038,43.8838110863966\n1.06329113924051,45.0654701909745\n1.32911392405063,46.2885890996191\n1.59493670886076,47.5535455587846\n1.86075949367089,48.860717314925\n2.12658227848101,50.2108645885047\n2.39240506329114,51.60614568334\n2.65822784810127,53.0454368527435\n2.92405063291139,54.5270574263014\n3.18987341772152,56.0493267335996\n3.45569620253165,57.610564104224\n3.72151898734177,59.2090888677608\n3.9873417721519,60.8432203537958\n4.25316455696202,62.5202615156233\n4.51898734177215,64.2477674631211\n4.78481012658228,66.0216143174815\n5.0506329113924,67.8376548086375\n5.31645569620253,69.6917416665225\n5.58227848101266,71.57972762107\n5.84810126582278,73.4974654022131\n6.11392405063291,75.4478091474361\n6.37974683544304,77.4789814746203\n6.64556962025316,79.5869963880184\n6.91139240506329,81.7547138560651\n7.17721518987342,83.9649938471946\n7.44303797468354,86.2006963298414\n7.70886075949367,88.44468127244\n7.9746835443038,90.6798086434247\n8.24050632911392,92.9317464898758\n8.50632911392405,95.2460431640748\n8.77215189873418,97.6083142025363\n9.0379746835443,100.003704267842\n9.30379746835443,102.417358022573\n9.56962025316456,104.83442012931\n9.83544303797468,107.240035250637\n10.1012658227848,109.621373038457\n10.3670886075949,111.991439245648\n10.6329113924051,114.362304338643\n10.8987341772152,116.742163802282\n11.1645569620253,119.139213121406\n11.4303797468354,121.561647780857\n11.6962025316456,124.017663265477\n11.9620253164557,126.515455060106\n12.2278481012658,129.069545475573\n12.4936708860759,131.684916280818\n12.7594936708861,134.345780645979\n13.0253164556962,137.036093545315\n13.2911392405063,139.739809953083\n13.5569620253165,142.440884843541\n13.8227848101266,145.123273190947\n14.0886075949367,147.775222679922\n14.3544303797468,150.43963803419\n14.620253164557,153.127471678004\n14.8860759493671,155.83329132284\n15.1518987341772,158.551664680174\n15.4177215189873,161.277159461484\n15.6835443037975,164.004343378247\n15.9493670886076,166.727784141939\n16.2151898734177,169.450699715757\n16.4810126582278,172.187084617584\n16.746835443038,174.935912679618\n17.0126582278481,177.695702719183\n17.2784810126582,180.464973553603\n17.5443037974684,183.242244000203\n17.8101265822785,186.026032876308\n18.0759493670886,188.81515945549\n18.3417721518987,191.613539462179\n18.6075949367089,194.4222803789\n18.873417721519,197.240677897373\n19.1392405063291,200.068027709318\n19.4050632911392,202.903625506455\n19.6708860759494,205.746766980504\n19.9367088607595,208.596747823186\n20.2025316455696,211.451831773233\n20.4683544303797,214.310787173754\n20.7341772151899,217.176437602827\n21,220.051742026624"
+    },
+    {
+      "name": "scale/x",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "domain": "number"
+        }
+      },
+      "values": "\"domain\"\n-1.05\n22.05"
+    },
+    {
+      "name": "scale/y",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "domain": "number"
+        }
+      },
+      "values": "\"domain\"\n18.1\n389.9"
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "domain": {
+        "data": "scale/x",
+        "field": "data.domain"
+      },
+      "zero": false,
+      "nice": false,
+      "clamp": false,
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "domain": {
+        "data": "scale/y",
+        "field": "data.domain"
+      },
+      "zero": false,
+      "nice": false,
+      "clamp": false,
+      "range": "height"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "properties": {
+        "update": {
+          "fill": {
+            "value": "#000000"
+          },
+          "size": {
+            "value": 50
+          },
+          "x": {
+            "scale": "x",
+            "field": "data.Time"
+          },
+          "y": {
+            "scale": "y",
+            "field": "data.weight"
+          }
+        },
+        "hover": {
+          "fill": {
+            "value": "red"
+          }
+        },
+        "ggvis": {
+          "data": {
+            "value": ".0"
+          }
+        }
+      },
+      "from": {
+        "data": ".0"
+      }
+    },
+    {
+      "type": "line",
+      "properties": {
+        "update": {
+          "stroke": {
+            "value": "#000000"
+          },
+          "strokeWidth": {
+            "value": 2
+          },
+          "x": {
+            "scale": "x",
+            "field": "data.pred_"
+          },
+          "y": {
+            "scale": "y",
+            "field": "data.resp_"
+          },
+          "fill": {
+            "value": "transparent"
+          }
+        },
+        "ggvis": {
+          "data": {
+            "value": ".0/model_prediction1"
+          }
+        }
+      },
+      "from": {
+        "data": ".0/model_prediction1"
+      }
+    }
+  ],
+  "legends": [],
+  "axes": [
+    {
+      "type": "x",
+      "scale": "x",
+      "orient": "bottom",
+      "layer": "back",
+      "grid": true,
+      "title": "Time"
+    },
+    {
+      "type": "y",
+      "scale": "y",
+      "orient": "left",
+      "layer": "back",
+      "grid": true,
+      "title": "weight"
+    }
+  ],
+  "padding": null,
+  "ggvis_opts": {
+    "keep_aspect": false,
+    "resizable": true,
+    "padding": {},
+    "duration": 250,
+    "renderer": "svg",
+    "hover_duration": 0,
+    "width": 720,
+    "height": 432
+  },
+  "handlers": null
+};
+ggvis.getPlot("plot_id307230933").parseSpec(plot_id307230933_spec);
+</script></p>
+
+</article></slide><slide class=''><hgroup><h2>Scatter Plot of Data Grouped by Diet</h2></hgroup><article  id="scatter-plot-of-data-grouped-by-diet">
+
+<p><img src="2015-12-01-ChickWeight_files/figure-html/growth_scatter_diet-1.png" title="" alt="" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2>BoxPlot of Weight Data Grouped by diet (Hoverable)</h2></hgroup><article  id="boxplot-of-weight-data-grouped-by-diet-hoverable">
+
+<p><div id="plot_id524926797-container" class="ggvis-output-container">
+<div id="plot_id524926797" class="ggvis-output"></div>
+<div class="plot-gear-icon">
+<nav class="ggvis-control">
+<a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;"></a>
+<ul class="ggvis-dropdown">
+<li>
+Renderer: 
+<a id="plot_id524926797_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id524926797" data-renderer="svg">SVG</a>
+ | 
+<a id="plot_id524926797_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id524926797" data-renderer="canvas">Canvas</a>
+</li>
+<li>
+<a id="plot_id524926797_download" class="ggvis-download" data-plot-id="plot_id524926797">Download</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<script type="text/javascript">
+var plot_id524926797_spec = {
+  "data": [
+    {
+      "name": ".0/group_by1/boxplot2_flat",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "min_": "number",
+          "max_": "number",
+          "lower_": "number",
+          "upper_": "number",
+          "median_": "number"
+        }
+      },
+      "values": "\"Diet\",\"min_\",\"max_\",\"lower_\",\"upper_\",\"median_\"\n\"1\",35,250,57.75,136.5,88\n\"2\",39,309,65.5,163,104.5\n\"3\",39,373,67.5,198.75,125.5\n\"4\",39,322,71.25,184.75,129.5"
+    },
+    {
+      "name": ".0/group_by1/boxplot2",
+      "source": ".0/group_by1/boxplot2_flat",
+      "transform": [
+        {
+          "type": "treefacet",
+          "keys": [
+            "data.Diet"
+          ]
+        }
+      ]
+    },
+    {
+      "name": ".0/group_by1/boxplot2/boxplot_outliers3_flat",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "value_": "number"
+        }
+      },
+      "values": "\"value_\",\"Diet\"\n288,\"1\"\n305,\"1\"\n259,\"1\"\n266,\"1\"\n318,\"2\"\n331,\"2\""
+    },
+    {
+      "name": ".0/group_by1/boxplot2/boxplot_outliers3",
+      "source": ".0/group_by1/boxplot2/boxplot_outliers3_flat",
+      "transform": [
+        {
+          "type": "treefacet",
+          "keys": [
+            "data.Diet"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "scale/fill",
+      "format": {
+        "type": "csv",
+        "parse": {}
+      },
+      "values": "\"domain\"\n\"1\"\n\"2\"\n\"3\"\n\"4\""
+    },
+    {
+      "name": "scale/x",
+      "format": {
+        "type": "csv",
+        "parse": {}
+      },
+      "values": "\"domain\"\n\"1\"\n\"2\"\n\"3\"\n\"4\""
+    },
+    {
+      "name": "scale/xcenter",
+      "format": {
+        "type": "csv",
+        "parse": {}
+      },
+      "values": "\"domain\"\n\"1\"\n\"2\"\n\"3\"\n\"4\""
+    },
+    {
+      "name": "scale/y",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "domain": "number"
+        }
+      },
+      "values": "\"domain\"\n18.1\n389.9"
+    }
+  ],
+  "scales": [
+    {
+      "name": "fill",
+      "type": "ordinal",
+      "domain": {
+        "data": "scale/fill",
+        "field": "data.domain"
+      },
+      "points": true,
+      "sort": false,
+      "range": "category10"
+    },
+    {
+      "padding": 0.1,
+      "type": "ordinal",
+      "domain": {
+        "data": "scale/x",
+        "field": "data.domain"
+      },
+      "name": "x",
+      "points": false,
+      "sort": false,
+      "range": "width"
+    },
+    {
+      "points": true,
+      "padding": 1.1,
+      "name": "xcenter",
+      "type": "ordinal",
+      "domain": {
+        "data": "scale/xcenter",
+        "field": "data.domain"
+      },
+      "sort": false,
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "domain": {
+        "data": "scale/y",
+        "field": "data.domain"
+      },
+      "zero": false,
+      "nice": false,
+      "clamp": false,
+      "range": "height"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "data": ".0/group_by1/boxplot2"
+      },
+      "marks": [
+        {
+          "type": "rect",
+          "properties": {
+            "update": {
+              "stroke": {
+                "value": "#000000"
+              },
+              "fill": {
+                "scale": "fill",
+                "field": "data.Diet"
+              },
+              "y": {
+                "scale": "y",
+                "field": "data.min_"
+              },
+              "y2": {
+                "scale": "y",
+                "field": "data.max_"
+              },
+              "x": {
+                "scale": "xcenter",
+                "field": "data.Diet"
+              },
+              "width": {
+                "value": 0.5
+              }
+            },
+            "ggvis": {
+              "data": {
+                "value": ".0/group_by1/boxplot2"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "from": {
+        "data": ".0/group_by1/boxplot2"
+      },
+      "marks": [
+        {
+          "type": "rect",
+          "properties": {
+            "update": {
+              "stroke": {
+                "value": "#000000"
+              },
+              "fill": {
+                "scale": "fill",
+                "field": "data.Diet"
+              },
+              "x": {
+                "scale": "x",
+                "field": "data.Diet"
+              },
+              "y": {
+                "scale": "y",
+                "field": "data.lower_"
+              },
+              "y2": {
+                "scale": "y",
+                "field": "data.upper_"
+              },
+              "width": {
+                "scale": "x",
+                "band": true
+              }
+            },
+            "ggvis": {
+              "data": {
+                "value": ".0/group_by1/boxplot2"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "from": {
+        "data": ".0/group_by1/boxplot2"
+      },
+      "marks": [
+        {
+          "type": "rect",
+          "properties": {
+            "update": {
+              "stroke": {
+                "value": "#000000"
+              },
+              "fill": {
+                "scale": "fill",
+                "field": "data.Diet"
+              },
+              "x": {
+                "scale": "x",
+                "field": "data.Diet"
+              },
+              "y": {
+                "scale": "y",
+                "field": "data.median_"
+              },
+              "width": {
+                "scale": "x",
+                "band": true
+              },
+              "height": {
+                "value": 1
+              }
+            },
+            "ggvis": {
+              "data": {
+                "value": ".0/group_by1/boxplot2"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "from": {
+        "data": ".0/group_by1/boxplot2/boxplot_outliers3"
+      },
+      "marks": [
+        {
+          "type": "symbol",
+          "properties": {
+            "update": {
+              "size": {
+                "value": 50
+              },
+              "fill": {
+                "value": "black"
+              },
+              "y": {
+                "scale": "y",
+                "field": "data.value_"
+              },
+              "x": {
+                "scale": "xcenter",
+                "field": "data.Diet"
+              }
+            },
+            "ggvis": {
+              "data": {
+                "value": ".0/group_by1/boxplot2/boxplot_outliers3"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [],
+  "axes": [
+    {
+      "type": "x",
+      "scale": "x",
+      "orient": "bottom",
+      "layer": "back",
+      "grid": true,
+      "title": "Diet"
+    },
+    {
+      "type": "y",
+      "scale": "y",
+      "orient": "left",
+      "layer": "back",
+      "grid": true,
+      "title": "weight"
+    }
+  ],
+  "padding": null,
+  "ggvis_opts": {
+    "keep_aspect": false,
+    "resizable": true,
+    "padding": {},
+    "duration": 250,
+    "renderer": "svg",
+    "hover_duration": 0,
+    "width": 720,
+    "height": 432
+  },
+  "handlers": null
+};
+ggvis.getPlot("plot_id524926797").parseSpec(plot_id524926797_spec);
+</script></p>
+
+</article></slide><slide class=''><hgroup><h2>Final Weight Density Grouped by Diet</h2></hgroup><article  id="final-weight-density-grouped-by-diet">
+
+<p><img src="2015-12-01-ChickWeight_files/figure-html/final_wgt_diet-1.png" title="" alt="" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2>Final Weight Histogram Grouped by Diet</h2></hgroup><article  id="final-weight-histogram-grouped-by-diet">
+
+<p><img src="2015-12-01-ChickWeight_files/figure-html/final_wgt_hist-1.png" title="" alt="" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2>Survival Rate Grouped by Diet</h2></hgroup><article  id="survival-rate-grouped-by-diet">
+
+<p><img src="2015-12-01-ChickWeight_files/figure-html/survival_diet-1.png" title="" alt="" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2>Summary of Final Weights</h2></hgroup><article  id="summary-of-final-weights">
+
+<h3>Grouped by Diet</h3>
+
+<pre >##   Diet Num min max     mean median       sd
+## 1    1  16  96 305 177.7500  166.0 58.70207
+## 2    2  10  74 331 214.7000  212.5 78.13813
+## 3    3  10 147 373 270.3000  281.0 71.62254
+## 4    4   9 196 322 238.5556  237.0 43.34775</pre>
+
+</article></slide><slide class=''><hgroup><h2>Conclusions</h2></hgroup><article  id="conclusions">
+
+<ul>
+<li>Diet #3 gives the highest mean and median weight</li>
+<li>Diet #4 is the most consistent with the lowest standard deviation</li>
+<li>Diet #1 has the highest mortality rate</li>
+<li>Diet #4 has the biggest mean weight until day 12 - After which Diet #3 took over</li>
+</ul>
+
+<p>In conclusion, for a fixed Diet, then #3 would be the best choice if selecting for mass, but if uniformity was the desired outcome, then Diet #4 would be the best choice.</p>
+
+<p>It would be worth investigating whether a diet consisting of Diet #4 for the first 10-12 days followed by Diet #3 leads to an increased yield.</p></article></slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script src="2015-12-01-ChickWeight_files/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+<script src="2015-12-01-ChickWeight_files/ioslides-13.5.1/js/prettify/prettify.js"></script>
+<script src="2015-12-01-ChickWeight_files/ioslides-13.5.1/js/prettify/lang-r.js"></script>
+<script src="2015-12-01-ChickWeight_files/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+<script src="2015-12-01-ChickWeight_files/ioslides-13.5.1/js/hammer.js"></script>
+<script src="2015-12-01-ChickWeight_files/ioslides-13.5.1/js/slide-controller.js"></script>
+<script src="2015-12-01-ChickWeight_files/ioslides-13.5.1/js/slide-deck.js"></script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!-- map slide visiblity events into shiny -->
+<script>
+  (function() {
+    if (window.jQuery) {
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>

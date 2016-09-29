@@ -1,0 +1,1034 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Iris Classification</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/styles_feeling_responsive.css">
+
+  
+
+	<script src="http://localhost:4000/assets/js/modernizr.min.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+	<script>
+		WebFont.load({
+			google: {
+				families: [ 'Lato:400,700,400italic:latin', 'Volkhov::latin' ]
+			}
+		});
+	</script>
+
+	<noscript>
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic%7CVolkhov' rel='stylesheet' type='text/css'>
+	</noscript>
+
+
+	<!-- Search Engine Optimization -->
+	<meta name="description" content="An exploration of simple classification using caret with Edgar Anderson&#39;s famous Iris data set.">
+  	
+	
+	
+	
+	
+
+
+	<!-- Facebook Open Graph -->
+	<meta property="og:title" content="Iris Classification">
+	<meta property="og:description" content="An exploration of simple classification using caret with Edgar Anderson&#39;s famous Iris data set.">
+	<meta property="og:url" content="http://localhost:4000/projects/IrisDoc/">
+	<meta property="og:locale" content="en_EN">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="Projects">
+	
+	
+
+
+	
+
+	<link type="text/plain" rel="author" href="http://localhost:4000/humans.txt">
+
+	
+
+	
+
+	<link rel="icon" sizes="32x32" href="http://localhost:4000/assets/img/favicon-32x32.png">
+
+	<link rel="icon" sizes="192x192" href="http://localhost:4000/assets/img/touch-icon-192x192.png">
+
+	<link rel="apple-touch-icon-precomposed" sizes="180x180" href="http://localhost:4000/assets/img/apple-touch-icon-180x180-precomposed.png">
+
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://localhost:4000/assets/img/apple-touch-icon-152x152-precomposed.png">
+
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/assets/img/apple-touch-icon-144x144-precomposed.png">
+
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="http://localhost:4000/assets/img/apple-touch-icon-120x120-precomposed.png">
+
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/assets/img/apple-touch-icon-114x114-precomposed.png">
+
+	
+	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="http://localhost:4000/assets/img/apple-touch-icon-76x76-precomposed.png">
+
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/assets/img/apple-touch-icon-72x72-precomposed.png">
+
+	<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/assets/img/apple-touch-icon-precomposed.png">	
+
+	<meta name="msapplication-TileImage" content="http://localhost:4000/assets/img/msapplication_tileimage.png">
+
+	<meta name="msapplication-TileColor" content="#fabb00">
+
+
+	
+
+</head>
+<body id="top-of-page" class="page-fullwidth">
+	
+	<div id="navigation" class="sticky">
+  <nav class="top-bar" role="navigation" data-topbar>
+    <ul class="title-area">
+      <li class="name">
+      <h1 class="show-for-small-only"><a href="http://localhost:4000" class="icon-tree"> Projects</a></h1>
+    </li>
+       <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Navigation</span></a></li>
+    </ul>
+    <section class="top-bar-section">
+
+      <ul class="right">
+        
+
+              
+
+          
+          
+        
+
+              
+
+          
+          
+        
+
+              
+
+          
+          
+        
+
+              
+
+          
+          
+            
+            
+              <li class="divider"></li>
+              <li><a href="http://localhost:4000/search/">Search</a></li>
+
+            
+            
+          
+        
+
+              
+
+          
+          
+            
+            
+              <li class="divider"></li>
+              <li><a href="http://localhost:4000/contact/">Contact</a></li>
+
+            
+            
+          
+        
+        
+      </ul>
+
+      <ul class="left">
+        
+
+              
+
+          
+          
+
+            
+            
+              <li><a href="http://localhost:4000/">Home</a></li>
+              <li class="divider"></li>
+
+            
+            
+          
+        
+
+              
+
+          
+          
+
+            
+            
+
+              <li class="has-dropdown">
+                <a href="http://localhost:4000/projects/">Projects</a>
+
+                  <ul class="dropdown">
+                    
+
+                      
+
+                      <li><a href="http://localhost:4000/projects/">Latest</a></li>
+                    
+
+                      
+
+                      <li><a href="http://localhost:4000/projects/archive/">Archive</a></li>
+                    
+                  </ul>
+
+              </li>
+              <li class="divider"></li>
+            
+          
+        
+
+              
+
+          
+          
+
+            
+            
+              <li><a href="http://localhost:4000/about/">About</a></li>
+              <li class="divider"></li>
+
+            
+            
+          
+        
+
+              
+
+          
+          
+        
+
+              
+
+          
+          
+        
+        
+      </ul>
+    </section>
+  </nav>
+</div><!-- /#navigation -->
+
+	
+
+	
+
+<div id="masthead-with-text" style="background: #262930; ">
+	<div class="row">
+		<div class="small-12 columns">
+			<div class="masthead-title"></div>
+		</div><!-- /.small-12.columns -->
+	</div><!-- /.row -->
+</div><!-- /#masthead -->
+
+
+
+
+<nav class="breadcrumbs" role="menubar" aria-label="breadcrumbs">
+ <a href="http://localhost:4000">Start</a>
+ 
+   
+    
+        <a href="http://localhost:4000/projects/">projects</a>
+    
+  
+    
+        <a class="current">Iris Classification</a>
+    
+  
+</nav>
+
+
+
+
+<div class="masthead-caption">
+	Iris Data Pairwise Comparison
+</div>
+
+
+
+
+
+
+
+	
+
+
+<div class="row t30">
+	<div class="medium-12 columns">
+		<article>
+			<header>
+				
+				<h1>Iris Classification</h1>
+			</header>
+
+			
+			<p class="teaser">
+				An exploration of simple classification using caret with Edgar Anderson's famous Iris data set.
+			</p>
+			
+
+			<p>This is a quick exploration of simple classification using caret with Edgar Anderson’s famous <a href="http://archive.ics.uci.edu/ml/datasets/Iris">Iris data set</a>.</p>
+
+<p>The goal of the project is to utilise caret alongside a variety of machine learning algorithms to correctly classify irises into their species group.</p>
+
+<h3 id="the-data">The Data</h3>
+
+<p>Anderson’s Iris data set gives the measurements in centimeters of the 4 predictors, as well as the Species:</p>
+
+<ul>
+  <li>Sepal Length</li>
+  <li>Sepal Width</li>
+  <li>Petal Length</li>
+  <li>Petal Width</li>
+  <li>Species
+    <ul>
+      <li><em>iris setosa</em></li>
+      <li><em>iris versicolor</em></li>
+      <li><em>iris virginica</em></li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">summary</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## </code></pre></figure>
+
+<p>The iris data set was chosen partly as it requires no pre-processing or transformation, which is ideal for quickly looking at caret and classification, and also partly because it is a classic classification data set.</p>
+
+<h3 id="pairwise-correlation-matrix">Pairwise Correlation Matrix</h3>
+
+<p>First we will create a Pairwise Correlation Matrix to explore the variables and look for any relationships.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">ggpairs</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w">
+        </span><span class="n">colour</span><span class="o">=</span><span class="s1">'Species'</span><span class="p">,</span><span class="w">
+        </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.4</span><span class="p">,</span><span class="w">
+        </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Anderson's Iris Data -- 3 species"</span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/figs/IrisDoc/unnamed-chunk-3-1.png" alt="center" /></p>
+
+<p>These pairwise scatterplots show that there is strong correlation between Petal.Length and Petal.Width. And also correlation between Sepal.Length and Petal.Length, and also Sepal.Length with Petal.Width.</p>
+
+<p>We can also see a degree of separation between <em>iris setosa</em> and the other Irises, but there is no clear separation between <em>iris versicolor</em> and <em>iris virginica</em></p>
+
+<h3 id="comparing-sepallength-and-sepalwidth">Comparing Sepal.Length and Sepal.Width</h3>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">ggplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Sepal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">Sepal.Width</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="o">=</span><span class="n">Species</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Sepal.Length vs Sepal.Width"</span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/figs/IrisDoc/unnamed-chunk-4-1.png" alt="center" /></p>
+
+<p>Comparing Sepal.Width and Sepal.Length whilst colouring according to species shows good separation between <em>iris setosa</em> and the other iris species, but again only minor difference between <em>iris versicolor</em> and <em>iris virginica.</em></p>
+
+<h3 id="comparing-petallength-and-petalwidth">Comparing Petal.Length and Petal.Width</h3>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">ggplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Petal.Width</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">Petal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="o">=</span><span class="n">Species</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Petal.Length vs Petal.Width"</span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/figs/IrisDoc/unnamed-chunk-5-1.png" alt="center" /></p>
+
+<p>From this graph, looking at the Petal.Width vs Petal.Length and colouring according to species, we can see both strong correlation and also pretty good separation betwen the 3 species, except for a few uncertain points between the blue/green groups.</p>
+
+<h2 id="models">Models</h2>
+
+<p>We’ll build some models and use them to classify species.</p>
+
+<h3 id="testtraining-data">Test/Training Data</h3>
+
+<p>First we need to split our data set in test and training sets.</p>
+
+<p>The function createDataPartition can be used to create a <a href="http://stattrek.com/statistics/dictionary.aspx?definition=stratified_sampling">stratified random sample</a> of the data.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">inTrainingSet</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">createDataPartition</span><span class="p">(</span><span class="n">iris</span><span class="o">$</span><span class="n">Species</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">.50</span><span class="p">,</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="n">irisTrain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">iris</span><span class="p">[</span><span class="w"> </span><span class="n">inTrainingSet</span><span class="p">,]</span><span class="w">
+</span><span class="n">irisTest</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">iris</span><span class="p">[</span><span class="w"> </span><span class="o">-</span><span class="n">inTrainingSet</span><span class="p">,]</span></code></pre></figure>
+
+<h3 id="random-foresthttpsenwikipediaorgwikirandomforest"><a href="https://en.wikipedia.org/wiki/Random_forest">Random Forest</a></h3>
+
+<p>We now can use caret with a standard random forest method to create a model for clasifying iris species.</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## Loading required package: randomForest</code></pre></figure>
+
+<p>Let’s check our model by using it on the unseen test data to predict the species based on the other variables.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">pred.rf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">m.rf</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="p">)</span></code></pre></figure>
+
+<p>Now we can view a <a href="https://en.wikipedia.org/wiki/Confusion_matrix">confusion matrix</a> to see how well our random forest classified the data.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">cm.rf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">confusionMatrix</span><span class="p">(</span><span class="n">pred.rf</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="o">$</span><span class="n">Species</span><span class="p">)</span><span class="w">
+</span><span class="n">kable</span><span class="p">(</span><span class="n">cm.rf</span><span class="o">$</span><span class="n">table</span><span class="p">)</span></code></pre></figure>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: right">setosa</th>
+      <th style="text-align: right">versicolor</th>
+      <th style="text-align: right">virginica</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">setosa</td>
+      <td style="text-align: right">25</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">versicolor</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">24</td>
+      <td style="text-align: right">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">virginica</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">24</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This is pretty good, classifying all 25/25 of the <em>iris setosa</em> data correctly, only misclassifying 1/25 <em>iris versicolor</em> as <em>iris virginica</em>, and misclassifying 1/25 <em>iris virginica</em> as <em>iris versicolor</em></p>
+
+<h3 id="c50httpsenwikipediaorgwikic45algorithm"><a href="https://en.wikipedia.org/wiki/C4.5_algorithm">C5.0</a></h3>
+
+<p>Now we will try classifying with the C5.0 algorithm.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">m.C50</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train</span><span class="p">(</span><span class="n">Species</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">irisTrain</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="o">=</span><span class="s2">"C5.0"</span><span class="w"> </span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## Loading required package: C50</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">pred.C50</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">m.C50</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="p">)</span><span class="w">
+</span><span class="n">cm.C50</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">confusionMatrix</span><span class="p">(</span><span class="n">pred.C50</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="o">$</span><span class="n">Species</span><span class="p">)</span><span class="w">
+</span><span class="n">kable</span><span class="p">(</span><span class="n">cm.C50</span><span class="o">$</span><span class="n">table</span><span class="p">)</span></code></pre></figure>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: right">setosa</th>
+      <th style="text-align: right">versicolor</th>
+      <th style="text-align: right">virginica</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">setosa</td>
+      <td style="text-align: right">23</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">versicolor</td>
+      <td style="text-align: right">2</td>
+      <td style="text-align: right">24</td>
+      <td style="text-align: right">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">virginica</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">24</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="naive-bayeshttpsenwikipediaorgwikinaivebayesclassifier"><a href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier">Naive Bayes</a></h3>
+
+<p><br /></p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">m.nb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train</span><span class="p">(</span><span class="n">Species</span><span class="o">~</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">irisTrain</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="o">=</span><span class="s2">"nb"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">pred.nb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">m.nb</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="p">)</span><span class="w">
+</span><span class="n">cm.nb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">confusionMatrix</span><span class="p">(</span><span class="n">pred.nb</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="o">$</span><span class="n">Species</span><span class="p">)</span><span class="w">
+</span><span class="n">kable</span><span class="p">(</span><span class="n">cm.nb</span><span class="o">$</span><span class="n">table</span><span class="p">)</span></code></pre></figure>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: right">setosa</th>
+      <th style="text-align: right">versicolor</th>
+      <th style="text-align: right">virginica</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">setosa</td>
+      <td style="text-align: right">25</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">versicolor</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">24</td>
+      <td style="text-align: right">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">virginica</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">23</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="naive-bayes-with-k-fold-cross-validationhttpenwikipediaorgwikicross-validationstatistics">Naive Bayes with <a href="http://en.wikipedia.org/wiki/Cross-validation_(statistics\)">k-fold Cross Validation</a></h3>
+
+<p>Adding k-fold (in this case 10-fold) cross validation to create our naive bayes model.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">train_control</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">trainControl</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"cv"</span><span class="p">,</span><span class="w"> </span><span class="n">number</span><span class="o">=</span><span class="m">10</span><span class="p">)</span><span class="w">
+
+</span><span class="n">m.nbkf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train</span><span class="p">(</span><span class="n">Species</span><span class="o">~</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">irisTrain</span><span class="p">,</span><span class="w"> </span><span class="n">trControl</span><span class="o">=</span><span class="n">train_control</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="o">=</span><span class="s2">"nb"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">pred.nbkf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">m.nbkf</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="p">)</span><span class="w">
+</span><span class="n">cm.nbkf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">confusionMatrix</span><span class="p">(</span><span class="n">pred.nbkf</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="o">$</span><span class="n">Species</span><span class="p">)</span><span class="w">
+</span><span class="n">kable</span><span class="p">(</span><span class="n">cm.nbkf</span><span class="o">$</span><span class="n">table</span><span class="p">)</span></code></pre></figure>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: right">setosa</th>
+      <th style="text-align: right">versicolor</th>
+      <th style="text-align: right">virginica</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">setosa</td>
+      <td style="text-align: right">25</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">versicolor</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">24</td>
+      <td style="text-align: right">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">virginica</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">23</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="k-nearest-neighbourshttpsenwikipediaorgwikik-nearestneighborsalgorithm"><a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm">k-nearest neighbours</a></h3>
+
+<p><br /></p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">m.knn</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train</span><span class="p">(</span><span class="n">Species</span><span class="o">~</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">irisTrain</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="o">=</span><span class="s2">"knn"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">pred.knn</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">m.knn</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="p">)</span><span class="w">
+</span><span class="n">cm.knn</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">confusionMatrix</span><span class="p">(</span><span class="n">pred.knn</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="o">$</span><span class="n">Species</span><span class="p">)</span><span class="w">
+</span><span class="n">kable</span><span class="p">(</span><span class="n">cm.knn</span><span class="o">$</span><span class="n">table</span><span class="p">)</span></code></pre></figure>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: right">setosa</th>
+      <th style="text-align: right">versicolor</th>
+      <th style="text-align: right">virginica</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">setosa</td>
+      <td style="text-align: right">25</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">versicolor</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">25</td>
+      <td style="text-align: right">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">virginica</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">23</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="neural-networkhttpsenwikipediaorgwikiartificialneuralnetwork"><a href="https://en.wikipedia.org/wiki/Artificial_neural_network">Neural Network</a></h3>
+
+<p><br /></p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">m.nnet</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train</span><span class="p">(</span><span class="n">Species</span><span class="o">~</span><span class="n">.</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">irisTrain</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s2">"nnet"</span><span class="p">,</span><span class="w"> </span><span class="n">trace</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## Loading required package: nnet</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">pred.nnet</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">m.nnet</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="p">)</span><span class="w">
+</span><span class="n">cm.nnet</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">confusionMatrix</span><span class="p">(</span><span class="n">pred.nnet</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="o">$</span><span class="n">Species</span><span class="p">)</span><span class="w">
+</span><span class="n">kable</span><span class="p">(</span><span class="n">cm.nnet</span><span class="o">$</span><span class="n">table</span><span class="p">)</span></code></pre></figure>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: right">setosa</th>
+      <th style="text-align: right">versicolor</th>
+      <th style="text-align: right">virginica</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">setosa</td>
+      <td style="text-align: right">25</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">versicolor</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">24</td>
+      <td style="text-align: right">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">virginica</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">25</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="neural-network-with-bootstrappinghttpswwwwikiwandcomenbootstrappingstatistics">Neural Network with <a href="https://www.wikiwand.com/en/Bootstrapping_(statistics\)">Bootstrapping</a></h3>
+
+<p><br /></p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">tc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">trainControl</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"boot"</span><span class="p">,</span><span class="n">number</span><span class="o">=</span><span class="m">25</span><span class="p">)</span><span class="w">
+
+</span><span class="n">m.nnet.bs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train</span><span class="p">(</span><span class="n">Species</span><span class="o">~</span><span class="n">.</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">irisTrain</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s2">"nnet"</span><span class="p">,</span><span class="n">trControl</span><span class="o">=</span><span class="n">tc</span><span class="p">,</span><span class="w"> </span><span class="n">trace</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">pred.nnet.bs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">m.nnet.bs</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="p">)</span><span class="w">
+</span><span class="n">cm.nnet.bs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">confusionMatrix</span><span class="p">(</span><span class="n">pred.nnet.bs</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="o">$</span><span class="n">Species</span><span class="p">)</span><span class="w">
+</span><span class="n">kable</span><span class="p">(</span><span class="n">cm.nnet.bs</span><span class="o">$</span><span class="n">table</span><span class="p">)</span></code></pre></figure>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: right">setosa</th>
+      <th style="text-align: right">versicolor</th>
+      <th style="text-align: right">virginica</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">setosa</td>
+      <td style="text-align: right">25</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">versicolor</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">24</td>
+      <td style="text-align: right">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">virginica</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">25</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="random-forest-with-leave-one-out-cross-validationhttpswwwwikiwandcomenbootstrappingstatistics">Random Forest with <a href="https://www.wikiwand.com/en/Bootstrapping_(statistics\)">Leave One Out Cross Validation</a></h3>
+
+<p><br /></p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">tc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">trainControl</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"LOOCV"</span><span class="p">,</span><span class="w"> </span><span class="n">number</span><span class="o">=</span><span class="m">25</span><span class="p">)</span><span class="w">
+
+</span><span class="n">m.rf.bs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train</span><span class="p">(</span><span class="n">Species</span><span class="o">~</span><span class="n">.</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">irisTrain</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s2">"rf"</span><span class="p">,</span><span class="n">trControl</span><span class="o">=</span><span class="n">tc</span><span class="p">,</span><span class="w"> </span><span class="n">trace</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">pred.rf.bs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">m.rf.bs</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="p">)</span><span class="w">
+</span><span class="n">cm.rf.bs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">confusionMatrix</span><span class="p">(</span><span class="n">pred.rf.bs</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="o">$</span><span class="n">Species</span><span class="p">)</span><span class="w">
+</span><span class="n">kable</span><span class="p">(</span><span class="n">cm.rf.bs</span><span class="o">$</span><span class="n">table</span><span class="p">)</span></code></pre></figure>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: right">setosa</th>
+      <th style="text-align: right">versicolor</th>
+      <th style="text-align: right">virginica</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">setosa</td>
+      <td style="text-align: right">25</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">versicolor</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">24</td>
+      <td style="text-align: right">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">virginica</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">24</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="elastic-net-glmnethttpscranr-projectorgwebpackagesglmnetvignettesglmnetbetahtml">Elastic Net <a href="https://cran.r-project.org/web/packages/glmnet/vignettes/glmnet_beta.html">glmnet</a></h3>
+
+<p><br /></p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">m.glmnet</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train</span><span class="p">(</span><span class="n">Species</span><span class="o">~</span><span class="n">.</span><span class="p">,</span><span class="w"> 
+                  </span><span class="n">data</span><span class="o">=</span><span class="n">irisTrain</span><span class="p">,</span><span class="w"> 
+                  </span><span class="n">method</span><span class="o">=</span><span class="s2">"AdaBoost.M1"</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## Loading required package: adabag</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">pred.glmnet</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">m.glmnet</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="p">)</span><span class="w">
+</span><span class="n">cm.glmnet</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">confusionMatrix</span><span class="p">(</span><span class="n">pred.glmnet</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="o">$</span><span class="n">Species</span><span class="p">)</span><span class="w">
+</span><span class="n">kable</span><span class="p">(</span><span class="n">cm.glmnet</span><span class="o">$</span><span class="n">table</span><span class="p">)</span></code></pre></figure>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: right">setosa</th>
+      <th style="text-align: right">versicolor</th>
+      <th style="text-align: right">virginica</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">setosa</td>
+      <td style="text-align: right">25</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">versicolor</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">24</td>
+      <td style="text-align: right">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">virginica</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">24</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="using-pre-processing-including-pca-with-neural-net">Using Pre-Processing (including [PCA]) with Neural Net</h3>
+
+<p><br /></p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">m.nnet.pp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train</span><span class="p">(</span><span class="n">Species</span><span class="o">~</span><span class="n">.</span><span class="p">,</span><span class="w">
+                </span><span class="n">data</span><span class="o">=</span><span class="n">irisTrain</span><span class="p">,</span><span class="w">
+                </span><span class="n">method</span><span class="o">=</span><span class="s2">"nnet"</span><span class="p">,</span><span class="w">
+                </span><span class="n">preProcess</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s2">"BoxCox"</span><span class="p">,</span><span class="w"> </span><span class="s2">"center"</span><span class="p">,</span><span class="w"> </span><span class="s2">"scale"</span><span class="p">,</span><span class="w"> </span><span class="s2">"pca"</span><span class="p">),</span><span class="w">
+                </span><span class="n">trace</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">pred.nnet.pp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">m.nnet.pp</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="p">)</span><span class="w">
+</span><span class="n">cm.nnet.pp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">confusionMatrix</span><span class="p">(</span><span class="n">pred.nnet.pp</span><span class="p">,</span><span class="w"> </span><span class="n">irisTest</span><span class="o">$</span><span class="n">Species</span><span class="p">)</span><span class="w">
+</span><span class="n">kable</span><span class="p">(</span><span class="n">cm.nnet.pp</span><span class="o">$</span><span class="n">table</span><span class="p">)</span></code></pre></figure>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: right">setosa</th>
+      <th style="text-align: right">versicolor</th>
+      <th style="text-align: right">virginica</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">setosa</td>
+      <td style="text-align: right">25</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">versicolor</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">23</td>
+      <td style="text-align: right">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">virginica</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">2</td>
+      <td style="text-align: right">21</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="results">Results</h2>
+
+<p>Having used a variety of different models to classify the iris data set, we can now attempt to compare their performance.
+Comparing confusion matrices isn’t entirelty straight-forward as models perform differently in different areas, some optimising for specificity, some for sensitivity, or for some other metric.
+I have chosen to use <a href="https://en.wikipedia.org/wiki/Matthews_correlation_coefficient">Matthews Correlation Coefficient</a> which gives a single number in the range -1 to +1, and is a correlation coefficient between the observed and predicted binary classifications.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">results</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">arrange</span><span class="p">(</span><span class="n">desc</span><span class="p">(</span><span class="n">MCC</span><span class="p">))</span><span class="w">
+</span><span class="n">kable</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></code></pre></figure>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: right">MCC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Neural Net</td>
+      <td style="text-align: right">0.9802614</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Neural Net w Boot</td>
+      <td style="text-align: right">0.9802614</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">KNN</td>
+      <td style="text-align: right">0.9610256</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Random Forest</td>
+      <td style="text-align: right">0.9600000</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Random Forest w LOOCV</td>
+      <td style="text-align: right">0.9600000</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">AdaBoost.M1</td>
+      <td style="text-align: right">0.9600000</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Naive Bayes</td>
+      <td style="text-align: right">0.9402508</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Naive Bayes k-fold</td>
+      <td style="text-align: right">0.9402508</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">C5.0</td>
+      <td style="text-align: right">0.9209829</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Neural Net PP</td>
+      <td style="text-align: right">0.8809402</td>
+    </tr>
+  </tbody>
+</table>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">ggplot</span><span class="p">(</span><span class="n">results</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">MCC</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="n">Name</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+</span><span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="o">=</span><span class="s2">"identity"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Comparison of Classification Methods"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+</span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+      </span><span class="n">axis.title.x</span><span class="o">=</span><span class="n">element_blank</span><span class="p">())</span></code></pre></figure>
+
+<p><img src="/figs/IrisDoc/unnamed-chunk-28-1.png" alt="center" /></p>
+
+<p>From the table and graph it is possible to see that all the models performed similarly, in the range 0.88 - 0.98. But the Neural Network performed the best MCC=0.98, followed by KNN with MCC=0.96.</p>
+
+<p>Another point of interest is that the worst model was also the neural network, but with pre-processed data using BoxCox, centering, scaling and PCA which implies that innapropriate pre-processing can be worse than none.</p>
+
+<!-- ggplot(results, aes(x=Name, y=MCC, fill=Name)) +  -->
+<!--     geom_bar(stat="identity") + -->
+<!--     theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=16)) + -->
+<!--     ggtitle("Comparison of Classification Methods") + +     theme( -->
+<!--             axis.line=element_blank(), -->
+<!--             axis.text.x=element_blank(), -->
+<!--             axis.text.y=element_blank(), -->
+<!--             axis.ticks=element_blank(), -->
+<!--             axis.title.x=element_blank(), -->
+<!--             axis.title.y=element_blank(), -->
+<!--             legend.position="none", -->
+<!--             panel.background=element_blank(), -->
+<!--             panel.border=element_blank(), -->
+<!--             panel.grid.major=element_blank(), -->
+<!--             panel.grid.minor=element_blank(), -->
+<!--             plot.background=element_blank() -->
+<!--            ) -->
+
+		</article>
+	</div><!-- /.medium-12.columns -->
+</div><!-- /.row -->
+
+
+
+
+	
+	    <div id="up-to-top" class="row">
+      <div class="small-12 columns" style="text-align: right;">
+        <a class="iconfont" href="#top-of-page">&#xf108;</a>
+      </div><!-- /.small-12.columns -->
+    </div><!-- /.row -->
+
+
+    <footer id="footer-content" class="bg-grau">
+      <div id="footer">
+        <div class="row">
+          <div class="medium-6 large-5 columns">
+            <h5 class="shadow-black">About This Site</h5>
+
+            <p class="shadow-black">
+              This site is a repository for my projects
+              <a href="http://localhost:4000/info/">More ›</a>
+            </p>
+          </div><!-- /.large-6.columns -->
+
+
+          <div class="small-6 medium-3 large-3 large-offset-1 columns">
+            
+              
+                <h5 class="shadow-black">Services</h5>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+
+              <ul class="no-bullet shadow-black">
+              
+                
+                  <li >
+                    <a href="http://localhost:4000"  title=""></a>
+                  </li>
+              
+                
+                  <li >
+                    <a href="http://localhost:4000/contact/"  title="Contact">Contact</a>
+                  </li>
+              
+                
+                  <li >
+                    <a href="http://localhost:4000/feed.xml"  title="Subscribe to RSS Feed">RSS</a>
+                  </li>
+              
+                
+                  <li >
+                    <a href="http://localhost:4000/atom.xml"  title="Subscribe to Atom Feed">Atom</a>
+                  </li>
+              
+                
+                  <li >
+                    <a href="http://localhost:4000/sitemap.xml"  title="Sitemap for Google Webmaster Tools">sitemap.xml</a>
+                  </li>
+              
+              </ul>
+          </div><!-- /.large-4.columns -->
+
+
+          <div class="small-6 medium-3 large-3 columns">
+            
+
+            <ul class="no-bullet shadow-black">
+            
+            </ul>
+          </div><!-- /.large-3.columns -->
+        </div><!-- /.row -->
+
+      </div><!-- /#footer -->
+
+
+      <div id="subfooter">
+        <nav class="row">
+          <section id="subfooter-left" class="small-12 medium-6 columns credits">
+            <p>Created by Mark Pratley with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> based on the <a href="http://phlow.github.io/feeling-responsive/">Feeling Responsive</a> theme.</p>
+          </section>
+
+          <section id="subfooter-right" class="small-12 medium-6 columns">
+            <ul class="inline-list social-icons">
+            
+              <li><a href="http://github.com/markpratley" target="_blank" class="icon-github" title="Code und mehr..."></a></li>
+            
+            </ul>
+          </section>
+        </nav>
+      </div><!-- /#subfooter -->
+    </footer>
+
+	
+
+	
+
+
+<script src="http://localhost:4000/assets/js/javascript.min.js"></script>
+
+
+
+<script>
+    $("#masthead").backstretch("http://localhost:4000/images/Iris-Data.png", {fade: 700});
+    $("#masthead-with-text").backstretch("http://localhost:4000/images/Iris-Data.png", {fade: 700});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+

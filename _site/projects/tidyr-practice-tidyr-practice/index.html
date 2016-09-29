@@ -1,0 +1,866 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TidyR Cheatsheet</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/styles_feeling_responsive.css">
+
+  
+
+	<script src="http://localhost:4000/assets/js/modernizr.min.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+	<script>
+		WebFont.load({
+			google: {
+				families: [ 'Lato:400,700,400italic:latin', 'Volkhov::latin' ]
+			}
+		});
+	</script>
+
+	<noscript>
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic%7CVolkhov' rel='stylesheet' type='text/css'>
+	</noscript>
+
+
+	<!-- Search Engine Optimization -->
+	<meta name="description" content="TidyR Cheatsheet">
+  	
+	
+	
+	
+	
+
+
+	<!-- Facebook Open Graph -->
+	<meta property="og:title" content="TidyR Cheatsheet">
+	<meta property="og:description" content="TidyR Cheatsheet">
+	<meta property="og:url" content="http://localhost:4000/projects/tidyr-practice-tidyr-practice/">
+	<meta property="og:locale" content="en_EN">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="Projects">
+	
+	
+
+
+	
+
+	<link type="text/plain" rel="author" href="http://localhost:4000/humans.txt">
+
+	
+
+	
+
+	<link rel="icon" sizes="32x32" href="http://localhost:4000/assets/img/favicon-32x32.png">
+
+	<link rel="icon" sizes="192x192" href="http://localhost:4000/assets/img/touch-icon-192x192.png">
+
+	<link rel="apple-touch-icon-precomposed" sizes="180x180" href="http://localhost:4000/assets/img/apple-touch-icon-180x180-precomposed.png">
+
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://localhost:4000/assets/img/apple-touch-icon-152x152-precomposed.png">
+
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/assets/img/apple-touch-icon-144x144-precomposed.png">
+
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="http://localhost:4000/assets/img/apple-touch-icon-120x120-precomposed.png">
+
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/assets/img/apple-touch-icon-114x114-precomposed.png">
+
+	
+	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="http://localhost:4000/assets/img/apple-touch-icon-76x76-precomposed.png">
+
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/assets/img/apple-touch-icon-72x72-precomposed.png">
+
+	<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/assets/img/apple-touch-icon-precomposed.png">	
+
+	<meta name="msapplication-TileImage" content="http://localhost:4000/assets/img/msapplication_tileimage.png">
+
+	<meta name="msapplication-TileColor" content="#fabb00">
+
+
+	
+
+</head>
+<body id="top-of-page" class="page-fullwidth">
+	
+	<div id="navigation" class="sticky">
+  <nav class="top-bar" role="navigation" data-topbar>
+    <ul class="title-area">
+      <li class="name">
+      <h1 class="show-for-small-only"><a href="http://localhost:4000" class="icon-tree"> Projects</a></h1>
+    </li>
+       <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Navigation</span></a></li>
+    </ul>
+    <section class="top-bar-section">
+
+      <ul class="right">
+        
+
+              
+
+          
+          
+        
+
+              
+
+          
+          
+        
+
+              
+
+          
+          
+        
+
+              
+
+          
+          
+            
+            
+              <li class="divider"></li>
+              <li><a href="http://localhost:4000/search/">Search</a></li>
+
+            
+            
+          
+        
+
+              
+
+          
+          
+            
+            
+              <li class="divider"></li>
+              <li><a href="http://localhost:4000/contact/">Contact</a></li>
+
+            
+            
+          
+        
+        
+      </ul>
+
+      <ul class="left">
+        
+
+              
+
+          
+          
+
+            
+            
+              <li><a href="http://localhost:4000/">Home</a></li>
+              <li class="divider"></li>
+
+            
+            
+          
+        
+
+              
+
+          
+          
+
+            
+            
+
+              <li class="has-dropdown">
+                <a href="http://localhost:4000/projects/">Projects</a>
+
+                  <ul class="dropdown">
+                    
+
+                      
+
+                      <li><a href="http://localhost:4000/projects/">Latest</a></li>
+                    
+
+                      
+
+                      <li><a href="http://localhost:4000/projects/archive/">Archive</a></li>
+                    
+                  </ul>
+
+              </li>
+              <li class="divider"></li>
+            
+          
+        
+
+              
+
+          
+          
+
+            
+            
+              <li><a href="http://localhost:4000/about/">About</a></li>
+              <li class="divider"></li>
+
+            
+            
+          
+        
+
+              
+
+          
+          
+        
+
+              
+
+          
+          
+        
+        
+      </ul>
+    </section>
+  </nav>
+</div><!-- /#navigation -->
+
+	
+
+	
+
+<div id="masthead-with-text" style="background: #262930; ">
+	<div class="row">
+		<div class="small-12 columns">
+			<div class="masthead-title"></div>
+		</div><!-- /.small-12.columns -->
+	</div><!-- /.row -->
+</div><!-- /#masthead -->
+
+
+
+
+<nav class="breadcrumbs" role="menubar" aria-label="breadcrumbs">
+ <a href="http://localhost:4000">Start</a>
+ 
+   
+    
+        <a href="http://localhost:4000/projects/">projects</a>
+    
+  
+    
+        <a class="current">TidyR Cheatsheet</a>
+    
+  
+</nav>
+
+
+
+
+<div class="masthead-caption">
+	tidyr
+</div>
+
+
+
+
+
+
+
+	
+
+
+<div class="row t30">
+	<div class="medium-12 columns">
+		<article>
+			<header>
+				
+				<h1>TidyR Cheatsheet</h1>
+			</header>
+
+			
+			<p class="teaser">
+				TidyR Cheatsheet
+			</p>
+			
+
+			<h2 id="fx-definitions-and-quick-links">f(x) definitions and Quick Links</h2>
+
+<p><a href="#Gather">gather</a>(data, key, value, …, na.rm = FALSE, convert = FALSE, factor_key = FALSE)</p>
+
+<p><a href="#Spread">spread</a>(data, key, value, fill = NA, convert = FALSE, drop = TRUE)</p>
+
+<p><a href="#Separate">separate</a>(data, col, into, sep = “[^[:alnum:]]+”, remove = TRUE,
+  convert = FALSE, extra = “warn”, fill = “warn”, …)</p>
+
+<h2 id="intro">Intro</h2>
+
+<p>I’m always forgetting how to use the main verbs from <a href="https://cran.r-project.org/web/packages/tidyr/index.html">tidyr</a> so this is a brief foray into practicing and remembering them.</p>
+
+<p>The main verbs are <a href="#Gather">gather</a>, <a href="#Spread">spread</a> and <a href="#Separate">separate</a>.</p>
+
+<p>Some of the explanatory text is from <a href="https://blog.rstudio.org/2014/07/22/introducing-tidyr/">here</a></p>
+
+<p>Some data to practice on is from <a href="http://garrettgman.github.io/tidying/">here</a> and <a href="http://www.jvcasillas.com/tidyr_tutorial/">here</a></p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">stringr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">reshape</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">DSR</span><span class="p">)</span></code></pre></figure>
+
+<h2 id="tidyr">tidyr</h2>
+
+<p>tidyr is new package that makes it easy to “tidy” your data. Tidy data is data that’s easy to work with: it’s easy to munge (with dplyr), visualise (with ggplot2 or ggvis) and model (with R’s hundreds of modelling packages). The two most important properties of tidy data are:</p>
+
+<ul>
+  <li>Each column is a variable.</li>
+  <li>Each row is an observation.</li>
+</ul>
+
+<p>Arranging your data in this way makes it easier to work with because you have a consistent way of referring to variables (as column names) and observations (as row indices). When use tidy data and tidy tools, you spend less time worrying about how to feed the output from one function into the input of another, and more time answering your questions about the data.</p>
+
+<p>To tidy messy data, you first identify the variables in your dataset, then use the tools provided by tidyr to move them into columns. tidyr provides three main functions for tidying your messy data: gather(), separate() and spread().</p>
+
+<h2 id="a-idgatheragather"><a id="Gather"></a>Gather</h2>
+
+<p>gather() takes multiple columns, and gathers them into key-value pairs: it makes “wide” data longer. Other names for gather include melt (reshape2), pivot (spreadsheets) and fold (databases).</p>
+
+<h3 id="examples">Examples</h3>
+
+<p>table4 %&gt;% gather(Year, Cases, 2:3)</p>
+
+<p>tidyr.ex %&gt;% gather(Day, Score, c(day1score, day2score))</p>
+
+<p>airquality %&gt;% gather(key, value, -Month, -Day)</p>
+
+<p>messy %&gt;% gather(key, value, -id, -trt)</p>
+
+<p>french_fries %&gt;% gather(flavour, value, -c(time:rep))</p>
+
+<h2 id="gather-1">Gather 1</h2>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">table4</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">print</span><span class="p">()</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## # A tibble: 3 x 3
+##       country `1999` `2000`
+##        &lt;fctr&gt;  &lt;int&gt;  &lt;int&gt;
+## 1 Afghanistan    745   2666
+## 2      Brazil  37737  80488
+## 3       China 212258 213766</code></pre></figure>
+
+<p>Convert table4 to tidy format</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">table4</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">gather</span><span class="p">(</span><span class="n">Year</span><span class="p">,</span><span class="w"> </span><span class="n">Cases</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="o">:</span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">print</span><span class="p">()</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## # A tibble: 6 x 3
+##       country  Year  Cases
+##        &lt;fctr&gt; &lt;chr&gt;  &lt;int&gt;
+## 1 Afghanistan  1999    745
+## 2      Brazil  1999  37737
+## 3       China  1999 212258
+## 4 Afghanistan  2000   2666
+## 5      Brazil  2000  80488
+## 6       China  2000 213766</code></pre></figure>
+
+<h2 id="gather-2">Gather 2</h2>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">tidyr.ex</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="w">
+    </span><span class="n">participant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"p1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"p2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"p3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"p4"</span><span class="p">,</span><span class="w"> </span><span class="s2">"p5"</span><span class="p">,</span><span class="w"> </span><span class="s2">"p6"</span><span class="p">),</span><span class="w"> 
+    </span><span class="n">info</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"g1m"</span><span class="p">,</span><span class="w"> </span><span class="s2">"g1m"</span><span class="p">,</span><span class="w"> </span><span class="s2">"g1f"</span><span class="p">,</span><span class="w"> </span><span class="s2">"g2m"</span><span class="p">,</span><span class="w"> </span><span class="s2">"g2m"</span><span class="p">,</span><span class="w"> </span><span class="s2">"g2m"</span><span class="p">),</span><span class="w">
+    </span><span class="n">day1score</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">80</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">15</span><span class="p">),</span><span class="w"> 
+    </span><span class="n">day2score</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">88</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">)</span><span class="w">
+</span><span class="p">)</span><span class="w">
+
+</span><span class="n">tidyr.ex</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">print</span><span class="p">()</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">##   participant info day1score day2score
+## 1          p1  g1m  74.60504  98.31054
+## 2          p2  g1m  91.37222  85.61189
+## 3          p3  g1f  69.64784  94.38421
+## 4          p4  g2m  73.07411  89.32712
+## 5          p5  g2m  88.17903  61.15229
+## 6          p6  g2m  74.70297  89.23591</code></pre></figure>
+
+<p>Convert tidyr.ex to tidy format</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">tidyr.ex</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">gather</span><span class="p">(</span><span class="n">Day</span><span class="p">,</span><span class="w"> </span><span class="n">Score</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">day1score</span><span class="p">,</span><span class="w"> </span><span class="n">day2score</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">mutate</span><span class="p">(</span><span class="n">Day</span><span class="o">=</span><span class="n">str_extract</span><span class="p">(</span><span class="n">Day</span><span class="p">,</span><span class="w"> </span><span class="s2">"\\d"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">print</span><span class="p">()</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">##    participant info Day    Score
+## 1           p1  g1m   1 74.60504
+## 2           p2  g1m   1 91.37222
+## 3           p3  g1f   1 69.64784
+## 4           p4  g2m   1 73.07411
+## 5           p5  g2m   1 88.17903
+## 6           p6  g2m   1 74.70297
+## 7           p1  g1m   2 98.31054
+## 8           p2  g1m   2 85.61189
+## 9           p3  g1f   2 94.38421
+## 10          p4  g2m   2 89.32712
+## 11          p5  g2m   2 61.15229
+## 12          p6  g2m   2 89.23591</code></pre></figure>
+
+<h1 id="gather-3">Gather 3</h1>
+
+<p>Using airquality dataset</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">airquality</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">head</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">print</span><span class="p">()</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67     5   1
+## 2    36     118  8.0   72     5   2
+## 3    12     149 12.6   74     5   3
+## 4    18     313 11.5   62     5   4
+## 5    NA      NA 14.3   56     5   5
+## 6    28      NA 14.9   66     5   6</code></pre></figure>
+
+<p>Convert airquality to tidy format, show first 3 values for each key</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">airquality.tidy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> 
+    </span><span class="n">airquality</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">gather</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">Month</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">Day</span><span class="p">)</span><span class="w">
+
+</span><span class="n">airquality.tidy</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">group_by</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">slice</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">print</span><span class="p">()</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## Source: local data frame [12 x 4]
+## Groups: key [4]
+## 
+##    Month   Day     key value
+##    &lt;int&gt; &lt;int&gt;   &lt;chr&gt; &lt;dbl&gt;
+## 1      5     1   Ozone  41.0
+## 2      5     2   Ozone  36.0
+## 3      5     3   Ozone  12.0
+## 4      5     1 Solar.R 190.0
+## 5      5     2 Solar.R 118.0
+## 6      5     3 Solar.R 149.0
+## 7      5     1    Temp  67.0
+## 8      5     2    Temp  72.0
+## 9      5     3    Temp  74.0
+## 10     5     1    Wind   7.4
+## 11     5     2    Wind   8.0
+## 12     5     3    Wind  12.6</code></pre></figure>
+
+<h1 id="gather-4">gather #4</h1>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">messy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="w">
+  </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">,</span><span class="w">
+  </span><span class="n">trt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s1">'control'</span><span class="p">,</span><span class="w"> </span><span class="s1">'treatment'</span><span class="p">),</span><span class="w"> </span><span class="n">each</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)),</span><span class="w">
+  </span><span class="n">work.T1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">runif</span><span class="p">(</span><span class="m">4</span><span class="p">),</span><span class="w">
+  </span><span class="n">home.T1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">runif</span><span class="p">(</span><span class="m">4</span><span class="p">),</span><span class="w">
+  </span><span class="n">work.T2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">runif</span><span class="p">(</span><span class="m">4</span><span class="p">),</span><span class="w">
+  </span><span class="n">home.T2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">runif</span><span class="p">(</span><span class="m">4</span><span class="p">)</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span><span class="n">messy</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">print</span><span class="p">()</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">##   id       trt   work.T1    home.T1   work.T2   home.T2
+## 1  1   control 0.6468060 0.39864924 0.6708680 0.6786486
+## 2  2 treatment 0.9892446 0.87098142 0.3518354 0.7842983
+## 3  3   control 0.2392983 0.29302979 0.8332908 0.7867416
+## 4  4 treatment 0.2089560 0.05470081 0.7339074 0.5762343</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">tidier</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> 
+    </span><span class="n">messy</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">gather</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">trt</span><span class="p">)</span><span class="w">
+
+</span><span class="n">tidier</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">head</span><span class="p">(</span><span class="m">5</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">##   id       trt     key     value
+## 1  1   control work.T1 0.6468060
+## 2  2 treatment work.T1 0.9892446
+## 3  3   control work.T1 0.2392983
+## 4  4 treatment work.T1 0.2089560
+## 5  1   control home.T1 0.3986492</code></pre></figure>
+
+<h1 id="gather-5">gather #5</h1>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">french_fries</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">head</span><span class="p">()</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">##    time treatment subject rep potato buttery grassy rancid painty
+## 61    1         1       3   1    2.9     0.0    0.0    0.0    5.5
+## 25    1         1       3   2   14.0     0.0    0.0    1.1    0.0
+## 62    1         1      10   1   11.0     6.4    0.0    0.0    0.0
+## 26    1         1      10   2    9.9     5.9    2.9    2.2    0.0
+## 63    1         1      15   1    1.2     0.1    0.0    1.1    5.1
+## 27    1         1      15   2    8.8     3.0    3.6    1.5    2.3</code></pre></figure>
+
+<p>messy %&gt;% 
+    gather(key, value, -id, -trt)</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">ff.tidy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> 
+    </span><span class="n">french_fries</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">gather</span><span class="p">(</span><span class="n">flavour</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="n">time</span><span class="o">:</span><span class="n">rep</span><span class="p">))</span><span class="w">
+
+</span><span class="n">ff.tidy</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">group_by</span><span class="p">(</span><span class="n">treatment</span><span class="p">,</span><span class="w"> </span><span class="n">subject</span><span class="p">,</span><span class="w"> </span><span class="n">flavour</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">summarise</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">value</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">spread</span><span class="p">(</span><span class="n">flavour</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">head</span><span class="p">(</span><span class="m">5</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## Source: local data frame [5 x 7]
+## Groups: treatment, subject [5]
+## 
+##   treatment subject   buttery    grassy   painty   potato   rancid
+##      &lt;fctr&gt;  &lt;fctr&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1         1       3 0.3722222 0.1888889 3.111111 6.216667 2.105556
+## 2         1      10 6.7500000 0.5850000 1.375000 9.955000 4.020000
+## 3         1      15 0.7200000 0.4200000 3.260000 3.360000 3.965000
+## 4         1      16 3.2600000 0.7550000 1.230000 6.495000 4.120000
+## 5         1      19 3.0550000 2.0200000 2.775000 9.385000 5.360000</code></pre></figure>
+
+<h1 id="a-idseparateaseparate"><a id="Separate"></a>Separate</h1>
+
+<p>Sometimes two variables are clumped together in one column. separate() allows you to tease them apart (extract() works similarly but uses regexp groups instead of a splitting pattern or position).</p>
+
+<h3 id="examples-1">Examples</h3>
+
+<p>table3 %&gt;% separate(rate, c(“thingy1”, “thingy2”), sep=”/”)</p>
+
+<p>tidier %&gt;% separate(key, into = c(“loc”, “time”), sep=”\.”)</p>
+
+<p>astrag %&gt;% separate(Taxon, c(“genus”, “species”), sep=”_”)</p>
+
+<h1 id="separate-1">Separate #1</h1>
+
+<p>table2</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">table3</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">print</span><span class="p">()</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## # A tibble: 6 x 3
+##       country  year              rate
+##        &lt;fctr&gt; &lt;int&gt;             &lt;chr&gt;
+## 1 Afghanistan  1999      745/19987071
+## 2 Afghanistan  2000     2666/20595360
+## 3      Brazil  1999   37737/172006362
+## 4      Brazil  2000   80488/174504898
+## 5       China  1999 212258/1272915272
+## 6       China  2000 213766/1280428583</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">table3</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">separate</span><span class="p">(</span><span class="n">rate</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"thingy1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"thingy2"</span><span class="p">),</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s2">"/"</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## # A tibble: 6 x 4
+##       country  year thingy1    thingy2
+## *      &lt;fctr&gt; &lt;int&gt;   &lt;chr&gt;      &lt;chr&gt;
+## 1 Afghanistan  1999     745   19987071
+## 2 Afghanistan  2000    2666   20595360
+## 3      Brazil  1999   37737  172006362
+## 4      Brazil  2000   80488  174504898
+## 5       China  1999  212258 1272915272
+## 6       China  2000  213766 1280428583</code></pre></figure>
+
+<h1 id="separate-2">Separate #2</h1>
+
+<p>Using tidier from above</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">tidier</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">head</span><span class="p">(</span><span class="m">5</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">##   id       trt     key     value
+## 1  1   control work.T1 0.6468060
+## 2  2 treatment work.T1 0.9892446
+## 3  3   control work.T1 0.2392983
+## 4  4 treatment work.T1 0.2089560
+## 5  1   control home.T1 0.3986492</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">tidy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> 
+    </span><span class="n">tidier</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">separate</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"loc"</span><span class="p">,</span><span class="w"> </span><span class="s2">"time"</span><span class="p">),</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s2">"\\."</span><span class="p">)</span><span class="w">
+
+</span><span class="n">tidy</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">head</span><span class="p">()</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">##   id       trt  loc time     value
+## 1  1   control work   T1 0.6468060
+## 2  2 treatment work   T1 0.9892446
+## 3  3   control work   T1 0.2392983
+## 4  4 treatment work   T1 0.2089560
+## 5  1   control home   T1 0.3986492
+## 6  2 treatment home   T1 0.8709814</code></pre></figure>
+
+<h1 id="separate-3">Separate #3</h1>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">astrag</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"http://hompal-stats.wabarr.com/datasets/barr_astrag_2014.txt"</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s2">"\t"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">astrag</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">head</span><span class="p">()</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">##   individual                 Taxon Habitat    ACF  APD     B DistRad DMTD
+## 1  AMNH81690    Aepyceros_melampus      LC 384.72 6.89 15.16    9.22 1.78
+## 2  AMNH82050    Aepyceros_melampus      LC     NA 6.09 14.00    8.73 1.64
+## 3  AMNH83534    Aepyceros_melampus      LC     NA 6.14 17.22    9.19 1.70
+## 4  AMNH85150    Aepyceros_melampus      LC     NA 5.80 15.27    8.85 1.72
+## 5 AMNH233038 Alcelaphus_buselaphus       O 607.83 7.46 18.47   11.33 2.26
+## 6  AMNH34717 Alcelaphus_buselaphus       O 465.91 6.56 15.47    9.79 1.78
+##   DTArea   LML   MIN   MML PMTD ProxRad  PTArea   WAF   WAT
+## 1 553.14 35.78 28.04 34.39 6.33   10.00  915.50 21.39 21.83
+## 2 558.17 35.46 27.28 33.18 6.54   10.50  841.79 22.47 21.11
+## 3 554.00 39.15 29.99 36.94 7.63   10.65  976.25 22.07 21.54
+## 4 498.67 36.61 28.02 34.09 6.97   10.00  841.71 22.55 21.03
+## 5 900.76 45.25 36.03 43.55 6.83   13.85 1557.05 28.98 27.07
+## 6 649.47 36.81 30.80 35.95 4.28   10.91 1139.50 24.04 25.84</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">astrag</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">select</span><span class="p">(</span><span class="n">individual</span><span class="p">,</span><span class="w"> </span><span class="n">Taxon</span><span class="p">,</span><span class="w"> </span><span class="n">Habitat</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">separate</span><span class="p">(</span><span class="n">Taxon</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"genus"</span><span class="p">,</span><span class="w"> </span><span class="s2">"species"</span><span class="p">),</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s2">"_"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">head</span><span class="p">()</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">##   individual      genus    species Habitat
+## 1  AMNH81690  Aepyceros   melampus      LC
+## 2  AMNH82050  Aepyceros   melampus      LC
+## 3  AMNH83534  Aepyceros   melampus      LC
+## 4  AMNH85150  Aepyceros   melampus      LC
+## 5 AMNH233038 Alcelaphus buselaphus       O
+## 6  AMNH34717 Alcelaphus buselaphus       O</code></pre></figure>
+
+<h1 id="a-idspreadaspread"><a id="Spread"></a>Spread</h1>
+
+<p>spread(), takes two columns (a key-value pair) and spreads them in to multiple columns, making “long” data wider. Spread is known by other names in other places: it’s cast in reshape2, unpivot in spreadsheets and unfold in databases. spread() is used when you have variables that form rows instead of columns. You need spread() less frequently than gather() or separate()</p>
+
+<h3 id="examples-2">Examples</h3>
+
+<p>table2 %&gt;% spread(key, value)</p>
+
+<p>ff.tidy %&gt;% spread(flavour, value)</p>
+
+<p>airquality.tidy %&gt;% spread(key, value)</p>
+
+<h1 id="spread-1">Spread #1</h1>
+
+<p>table2</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">table2</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">print</span><span class="p">()</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## # A tibble: 12 x 4
+##        country  year        key      value
+##         &lt;fctr&gt; &lt;int&gt;     &lt;fctr&gt;      &lt;int&gt;
+## 1  Afghanistan  1999      cases        745
+## 2  Afghanistan  1999 population   19987071
+## 3  Afghanistan  2000      cases       2666
+## 4  Afghanistan  2000 population   20595360
+## 5       Brazil  1999      cases      37737
+## 6       Brazil  1999 population  172006362
+## 7       Brazil  2000      cases      80488
+## 8       Brazil  2000 population  174504898
+## 9        China  1999      cases     212258
+## 10       China  1999 population 1272915272
+## 11       China  2000      cases     213766
+## 12       China  2000 population 1280428583</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">table2</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">spread</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## # A tibble: 6 x 4
+##       country  year  cases population
+## *      &lt;fctr&gt; &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3      Brazil  1999  37737  172006362
+## 4      Brazil  2000  80488  174504898
+## 5       China  1999 212258 1272915272
+## 6       China  2000 213766 1280428583</code></pre></figure>
+
+<h1 id="spread-2">Spread #2</h1>
+
+<p>From french fries above</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">ff.tidy</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">head</span><span class="p">()</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">##   time treatment subject rep flavour value
+## 1    1         1       3   1  potato   2.9
+## 2    1         1       3   2  potato  14.0
+## 3    1         1      10   1  potato  11.0
+## 4    1         1      10   2  potato   9.9
+## 5    1         1      15   1  potato   1.2
+## 6    1         1      15   2  potato   8.8</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">ff.tidy</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">spread</span><span class="p">(</span><span class="n">flavour</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">head</span><span class="p">()</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">##   time treatment subject rep buttery grassy painty potato rancid
+## 1    1         1       3   1     0.0    0.0    5.5    2.9    0.0
+## 2    1         1       3   2     0.0    0.0    0.0   14.0    1.1
+## 3    1         1      10   1     6.4    0.0    0.0   11.0    0.0
+## 4    1         1      10   2     5.9    2.9    0.0    9.9    2.2
+## 5    1         1      15   1     0.1    0.0    5.1    1.2    1.1
+## 6    1         1      15   2     3.0    3.6    2.3    8.8    1.5</code></pre></figure>
+
+<h1 id="spread-3">Spread #3</h1>
+
+<p>Using airquality.tidy from above</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">airquality.tidy</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">head</span><span class="p">()</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">##   Month Day   key value
+## 1     5   1 Ozone    41
+## 2     5   2 Ozone    36
+## 3     5   3 Ozone    12
+## 4     5   4 Ozone    18
+## 5     5   5 Ozone    NA
+## 6     5   6 Ozone    28</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">airquality.tidy</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">spread</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">head</span><span class="p">()</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">##   Month Day Ozone Solar.R Temp Wind
+## 1     5   1    41     190   67  7.4
+## 2     5   2    36     118   72  8.0
+## 3     5   3    12     149   74 12.6
+## 4     5   4    18     313   62 11.5
+## 5     5   5    NA      NA   56 14.3
+## 6     5   6    28      NA   66 14.9</code></pre></figure>
+
+
+		</article>
+	</div><!-- /.medium-12.columns -->
+</div><!-- /.row -->
+
+
+
+
+	
+	    <div id="up-to-top" class="row">
+      <div class="small-12 columns" style="text-align: right;">
+        <a class="iconfont" href="#top-of-page">&#xf108;</a>
+      </div><!-- /.small-12.columns -->
+    </div><!-- /.row -->
+
+
+    <footer id="footer-content" class="bg-grau">
+      <div id="footer">
+        <div class="row">
+          <div class="medium-6 large-5 columns">
+            <h5 class="shadow-black">About This Site</h5>
+
+            <p class="shadow-black">
+              This site is a repository for my projects
+              <a href="http://localhost:4000/info/">More ›</a>
+            </p>
+          </div><!-- /.large-6.columns -->
+
+
+          <div class="small-6 medium-3 large-3 large-offset-1 columns">
+            
+              
+                <h5 class="shadow-black">Services</h5>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+
+              <ul class="no-bullet shadow-black">
+              
+                
+                  <li >
+                    <a href="http://localhost:4000"  title=""></a>
+                  </li>
+              
+                
+                  <li >
+                    <a href="http://localhost:4000/contact/"  title="Contact">Contact</a>
+                  </li>
+              
+                
+                  <li >
+                    <a href="http://localhost:4000/feed.xml"  title="Subscribe to RSS Feed">RSS</a>
+                  </li>
+              
+                
+                  <li >
+                    <a href="http://localhost:4000/atom.xml"  title="Subscribe to Atom Feed">Atom</a>
+                  </li>
+              
+                
+                  <li >
+                    <a href="http://localhost:4000/sitemap.xml"  title="Sitemap for Google Webmaster Tools">sitemap.xml</a>
+                  </li>
+              
+              </ul>
+          </div><!-- /.large-4.columns -->
+
+
+          <div class="small-6 medium-3 large-3 columns">
+            
+
+            <ul class="no-bullet shadow-black">
+            
+            </ul>
+          </div><!-- /.large-3.columns -->
+        </div><!-- /.row -->
+
+      </div><!-- /#footer -->
+
+
+      <div id="subfooter">
+        <nav class="row">
+          <section id="subfooter-left" class="small-12 medium-6 columns credits">
+            <p>Created by Mark Pratley with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> based on the <a href="http://phlow.github.io/feeling-responsive/">Feeling Responsive</a> theme.</p>
+          </section>
+
+          <section id="subfooter-right" class="small-12 medium-6 columns">
+            <ul class="inline-list social-icons">
+            
+              <li><a href="http://github.com/markpratley" target="_blank" class="icon-github" title="Code und mehr..."></a></li>
+            
+            </ul>
+          </section>
+        </nav>
+      </div><!-- /#subfooter -->
+    </footer>
+
+	
+
+	
+
+
+<script src="http://localhost:4000/assets/js/javascript.min.js"></script>
+
+
+
+<script>
+    $("#masthead").backstretch("http://localhost:4000/images/tidyr-hexbin-sticker-from-rstudio.png", {fade: 700});
+    $("#masthead-with-text").backstretch("http://localhost:4000/images/tidyr-hexbin-sticker-from-rstudio.png", {fade: 700});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+

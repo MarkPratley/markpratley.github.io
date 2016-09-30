@@ -8,7 +8,7 @@ breadcrumb: true
 comments: true
 header:
     title: ""
-    image_fullwidth: AB_Testing_wide.png
+    image_fullwidth: AB_Testing_Wide.png
     background-color: "#262930"
     caption: A/B Testing
 image:

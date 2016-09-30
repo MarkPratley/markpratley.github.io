@@ -110,7 +110,7 @@ defaults:
     values:
       show_meta: false 	# Hide metadata for all pages
       # sidebar:    		# Possible values › left, right › by default there will be no sidebar
-      comments: false
+      comments: true
       author: Mark Pratley     # Default author for pages
   -
     scope:

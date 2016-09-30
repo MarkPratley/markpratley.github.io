@@ -5,6 +5,8 @@ title: "Chick Weight"
 # subheadline: "The effect of diet on Chick Weight"
 meta_teaser: "A small project using R to compare the weight of chicks over time when fed with 4 different diets."
 teaser: "A small project using R to compare the weight of chicks over time when fed with 4 different diets."
+breadcrumb: true
+comments: true
 header:
     title: ""
     image_fullwidth: Chick-Growth.png

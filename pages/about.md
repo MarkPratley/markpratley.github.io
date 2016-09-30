@@ -5,6 +5,7 @@ meta_teaser: "Why this Website?"
 teaser: "Why this Website?"
 permalink: "/about/"
 teaser: "Every now and then I work on a new project...<BR><BR>Sometimes it's because I see something that interests me, sometimes it's because I want to try something new..."
+breadcrumb: true
 header:
   title: "About"
   image_fullwidth: "profile.png"

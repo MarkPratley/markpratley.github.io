@@ -4,6 +4,7 @@ layout: redirect
 sitemap: false
 permalink: /redirect-page/
 redirect_to:  "http://markpratley.github.io/projects/"
+breadcrumb: true
 header:
   title: ""
   image_fullwidth: "profile.png"

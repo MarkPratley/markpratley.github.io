@@ -5,6 +5,8 @@ title: "Anscombes Quartet"
 #subheadline: "The importance of Viewing Your Data"
 meta_teaser: "A mini project to explore Anscombes Quartet."
 teaser: "A mini project to explore Anscombes Quartet, and the importance of graphing your data"
+breadcrumb: true
+comments: true
 header:
     title: ""
     image_fullwidth: AnscombesQuartet_Middle.png

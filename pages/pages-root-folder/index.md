@@ -13,17 +13,17 @@ header:
 widget1:
     title: "Projects"
     url: '/projects/'
-    image: cards.jpg
+#    image: cards.jpg
     text: 'A list of my projects.'
 widget2:
     title: "About"
     url: '/about/'
-    image: question_mark_cyan.png
+#    image: question_mark_cyan.png
     text: 'Why does this site exist?'
 widget3:
     title: "Contact"
     url: '/contact/'
-    image: contact.jpg
+#    image: contact.jpg
     text: 'Want to contact me?'
 #
 # Use the call for action to show a button on the frontpage

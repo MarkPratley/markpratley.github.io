@@ -15,4 +15,4 @@ For a while these projects languished on my computer, sometimes finished sometim
 
 I did this partly in case other people are interested, and partly to encourage me to finish them off.
 
-So I hope they'll be useful or interesting to someone but if not then it's been useful to me!
+I hope they'll be useful or interesting to someone but if not then they've been useful to me.

@@ -4,6 +4,8 @@ title: "TidyR Cheatsheet"
 meta_teaser: "TidyR Cheatsheet"
 teaser: "TidyR Cheatsheet"
 breadcrumb: true
+comments: true
+meta: true
 header:
     title: ""
     image_fullwidth: tidyr-hexbin-sticker-from-rstudio.png

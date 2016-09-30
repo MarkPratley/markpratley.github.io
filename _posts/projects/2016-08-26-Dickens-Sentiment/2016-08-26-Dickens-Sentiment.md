@@ -5,6 +5,8 @@ title: "Charles Dickens - Sentiment Analysis"
 meta_teaser: "A sentiment analysis of Oliver Twist by Charles Dickens"
 teaser: "A sentiment analysis of Oliver Twist by Charles Dickens"
 breadcrumb: true
+comments: true
+meta: true
 header:
     title: ""
     image_fullwidth: profile.png

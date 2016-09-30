@@ -6,6 +6,7 @@ meta_teaser: "A/B Testing"
 teaser: "A/B Testing with Pearson's chi-squared test of independence, and a monte carlo simulation to visually check the results"
 breadcrumb: true
 comments: true
+meta: true
 header:
     title: ""
     image_fullwidth: AB_Testing_wide.png

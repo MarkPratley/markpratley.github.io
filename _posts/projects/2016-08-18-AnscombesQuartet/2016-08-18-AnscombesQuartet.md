@@ -7,6 +7,7 @@ meta_teaser: "A mini project to explore Anscombes Quartet."
 teaser: "A mini project to explore Anscombes Quartet, and the importance of graphing your data"
 breadcrumb: true
 comments: true
+meta: true
 header:
     title: ""
     image_fullwidth: AnscombesQuartet_Middle.png

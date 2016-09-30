@@ -7,6 +7,7 @@ meta_teaser: "A small project using R to compare the weight of chicks over time 
 teaser: "A small project using R to compare the weight of chicks over time when fed with 4 different diets."
 breadcrumb: true
 comments: true
+meta: true
 header:
     title: ""
     image_fullwidth: Chick-Growth.png

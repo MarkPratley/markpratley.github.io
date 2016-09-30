@@ -6,6 +6,7 @@ meta_teaser: "Exploring and Mapping Crime in San Francisco"
 teaser: "Exploring and Mapping Crime in San Francisco"
 breadcrumb: true
 comments: true
+meta: true
 header:
     title: ""
     image_fullwidth: SF-Crime2_Middle.png

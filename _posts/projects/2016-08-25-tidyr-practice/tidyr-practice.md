@@ -26,10 +26,16 @@ tags:
 
 [gather](#Gather)(data, key, value, ..., na.rm = FALSE, convert = FALSE, factor_key = FALSE)
 
+gather() takes multiple columns, and gathers them into key-value pairs: it makes “wide” data longer.
+
 [spread](#Spread)(data, key, value, fill = NA, convert = FALSE, drop = TRUE)
+
+Spread(), takes two columns (a key-value pair) and spreads them in to multiple columns, making “long” data wider.
 
 [separate](#Separate)(data, col, into, sep = "[^[:alnum:]]+", remove = TRUE,
   convert = FALSE, extra = "warn", fill = "warn", ...)
+
+Sometimes two variables are clumped together in one column. separate() allows you to tease them apart.
 
 ## Intro
 
@@ -39,7 +45,7 @@ The main verbs are [gather](#Gather), [spread](#Spread) and [separate](#Separate
 
 Some of the explanatory text is from [here](https://blog.rstudio.org/2014/07/22/introducing-tidyr/)
 
-Some data to practice on is from [here](http://garrettgman.github.io/tidying/) and [here](http://www.jvcasillas.com/tidyr_tutorial/)
+Some data to practice on is taken from [here](http://garrettgman.github.io/tidying/) and [here](http://www.jvcasillas.com/tidyr_tutorial/)
 
 
 

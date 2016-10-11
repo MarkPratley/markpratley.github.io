@@ -290,3 +290,9 @@ From these graph it can be seen that:
 - Control and C are clearly different
 
 From these visual results it's also clear that we would choose to use version C of the page.
+
+The github repository for this project can be viewed [here](https://github.com/MarkPratley/AB_Testing).
+
+
+
+

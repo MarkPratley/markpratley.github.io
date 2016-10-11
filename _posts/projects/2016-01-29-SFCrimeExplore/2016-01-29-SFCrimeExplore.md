@@ -382,4 +382,8 @@ ggmap(big.zoom.map, extent='device') +
 <br>
 <br>
 
+The github repository for this project can be viewed [here](https://github.com/MarkPratley/SF-Crime).
+
+
+
 

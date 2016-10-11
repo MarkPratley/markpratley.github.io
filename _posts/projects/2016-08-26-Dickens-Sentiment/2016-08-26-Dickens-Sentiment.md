@@ -393,8 +393,7 @@ p <- ggplot(data = OT.l) +
 
 ![center](/figs/Dickens-Sentiment/graphing.OT-1.png)
 
-
-
+The github repository for this project can be viewed [here](https://github.com/MarkPratley/Dickens-Sentiment-Analysis).
 
 
 

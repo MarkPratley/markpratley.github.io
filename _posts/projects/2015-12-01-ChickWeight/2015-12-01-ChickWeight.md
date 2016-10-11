@@ -1184,3 +1184,9 @@ ggvis.getPlot("plot_id655316483").parseSpec(plot_id655316483_spec);
 In conclusion, for a fixed Diet, then #3 would be the best choice if selecting for mass, but if uniformity was the desired outcome, then Diet #4 would be the best choice.
 
 It would be worth investigating whether a diet consisting of Diet #4 for the first 10-12 days followed by Diet #3 leads to an increased yield.
+
+The github repository for this project can be viewed [here](https://github.com/MarkPratley/ChickWeight).
+
+
+
+

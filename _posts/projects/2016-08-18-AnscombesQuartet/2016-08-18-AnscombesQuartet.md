@@ -30,3 +30,9 @@ tags:
 Here we use r inside a [Jupyter Notebook](http://jupyter.org/) to briefly explore and then graph these datasets to highlight the importance of visually inspecting data.
 
 The notebook can be viewed [here](http://nbviewer.jupyter.org/github/MarkPratley/Anscombes-Quartet-Jupyter/blob/master/Anscombes_Quartet-Jupyter.ipynb).
+
+The github repository for this project can be viewed [here](https://github.com/MarkPratley/Anscombes-Quartet-Jupyter).
+
+
+
+

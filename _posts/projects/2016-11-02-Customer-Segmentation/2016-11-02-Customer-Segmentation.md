@@ -128,7 +128,7 @@ s.pc[1,-1] %>%
         scale_fill_brewer(palette="Set1")
 {% endhighlight %}
 
-![center](/figs/customer-segmentation/unnamed-chunk-4-1.png)
+![center](/figs/Customer-Segmentation/unnamed-chunk-4-1.png)
 
 {% highlight r %}
 s.pc
@@ -174,7 +174,7 @@ ggplot(assignments, aes(x=o1, y=o2)) +
     ggtitle("K-means Groupings with Different Numbers of Clusters")
 {% endhighlight %}
 
-![center](/figs/customer-segmentation/unnamed-chunk-6-1.png)
+![center](/figs/Customer-Segmentation/unnamed-chunk-6-1.png)
 
 ## Total within-cluster [sum of squares](https://en.wikipedia.org/wiki/Total_sum_of_squares)
 
@@ -189,7 +189,7 @@ ggplot(clusterings, aes(k, tot.withinss)) +
     scale_x_continuous(breaks=1:9)
 {% endhighlight %}
 
-![center](/figs/customer-segmentation/unnamed-chunk-7-1.png)
+![center](/figs/Customer-Segmentation/unnamed-chunk-7-1.png)
 
 
 
@@ -208,7 +208,7 @@ gap <- clusGap(tr[-1], FUN=kmeans, K.max=10, B=200, verbose = FALSE)
 plot(gap)
 {% endhighlight %}
 
-![center](/figs/customer-segmentation/unnamed-chunk-8-1.png)
+![center](/figs/Customer-Segmentation/unnamed-chunk-8-1.png)
 
 {% highlight r %}
 maxSE(gap$Tab[,"gap"], gap$Tab[,"SE.sim"], method = "Tibs2001SEmax")
@@ -235,7 +235,7 @@ gap <- clusGap(tr[-1], FUN=pam1, K.max=10, B=50, verbose = FALSE)
 plot(gap)
 {% endhighlight %}
 
-![center](/figs/customer-segmentation/unnamed-chunk-9-1.png)
+![center](/figs/Customer-Segmentation/unnamed-chunk-9-1.png)
 
 {% highlight r %}
 # Using the criteria recommended by Tibshirani at al.
@@ -264,7 +264,7 @@ plot(hc, labels = FALSE, hang = -1)
 rect.hclust(hc, k = 3, border = 2:4)
 {% endhighlight %}
 
-![center](/figs/customer-segmentation/unnamed-chunk-10-1.png)
+![center](/figs/Customer-Segmentation/unnamed-chunk-10-1.png)
 We can see that our dendrogram naturally splits into 3 groups, although 1 of those groups is very small and 1 very large.
 
 
@@ -282,7 +282,7 @@ tree.groups %>%
     ggtitle("Groupings from Hierarchical Tree")
 {% endhighlight %}
 
-![center](/figs/customer-segmentation/unnamed-chunk-11-1.png)
+![center](/figs/Customer-Segmentation/unnamed-chunk-11-1.png)
 
 
 ## Clustering Summary
@@ -386,7 +386,7 @@ freq %>%
     theme(plot.title = element_text(hjust = 0.5))
 {% endhighlight %}
 
-![center](/figs/customer-segmentation/unnamed-chunk-14-1.png)
+![center](/figs/Customer-Segmentation/unnamed-chunk-14-1.png)
 
 {% highlight r %}
 # View proportions
@@ -401,7 +401,7 @@ freq %>%
           plot.title = element_text(hjust = 0.5))
 {% endhighlight %}
 
-![center](/figs/customer-segmentation/unnamed-chunk-14-2.png)
+![center](/figs/Customer-Segmentation/unnamed-chunk-14-2.png)
 
 <BR>
 
@@ -451,8 +451,8 @@ getWordCloud(2)
 getWordCloud(3)
 {% endhighlight %}
 
-| ![left](/figs/customer-segmentation/unnamed-chunk-15-1.png)  | ![left](/figs/customer-segmentation/unnamed-chunk-15-2.png) |
-| ![left](/figs/customer-segmentation/unnamed-chunk-15-3.png)  | ![left](/figs/customer-segmentation/unnamed-chunk-15-4.png) |
+| ![left](/figs/Customer-Segmentation/unnamed-chunk-15-1.png)  | ![left](/figs/Customer-Segmentation/unnamed-chunk-15-2.png) |
+| ![left](/figs/Customer-Segmentation/unnamed-chunk-15-3.png)  | ![left](/figs/Customer-Segmentation/unnamed-chunk-15-4.png) |
 
 
 ## Summary

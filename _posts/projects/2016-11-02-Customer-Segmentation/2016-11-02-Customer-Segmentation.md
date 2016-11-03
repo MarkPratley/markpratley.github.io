@@ -35,6 +35,8 @@ We will mainly focus on k-means clustering and determining the optimal number of
 
 Finally we will examine the created group composition using bar charts and word clouds.
 
+All code and data used is available on [github](https://github.com/MarkPratley/Customer-Segmentation)
+
 ## The data
 
 The data set we will be using is taken from John W Foreman's book [Data Smart](http://eu.wiley.com/WileyCDA/WileyTitle/productCd-111866146X.html), and consists of a file containing descriptions of discounted wine offers, and another with customers discount purchases.

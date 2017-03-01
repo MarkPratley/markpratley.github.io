@@ -27,13 +27,13 @@ tags:
 
 ## A/B Testing
 
-Imagine that you're got a great product and a beautiful website with plenty of visitors, but and here's the rub ... not as many sales as you'd like.
+Imagine that you've got a great product and a beautiful website with plenty of visitors, but and here's the rub ... not as many sales as you'd like.
 
 There are all kinds of changes you could make, but the important thing is how can you tell whether whatever it is that you've changed has made a difference? And how can you tell whether or not any differences are down to chance?
 
 It turns out that there's a tried and tested way of finding these things out and thats called [A/B Testing](https://en.wikipedia.org/wiki/A/B_testing).
 
-To run A/B tests you create 2 different versions of something - usually versions of a webpage and then randomly serve 1 of them to a user, creating a simple randomized trial. You then record whether the user converts to making a sale or perhaps creating an account or whatever it is you wish to achieve.
+To run A/B tests you create two different versions of something - usually versions of a webpage, and then randomly serve 1 of them to a user, creating a simple randomized trial. You then record whether the user converts to making a sale or perhaps creating an account or whatever it is you wish to achieve.
 
 A/B testing lets you compare version A - usually your current or control option, with version B the new option. Then you are able to compare the convertion rates of A and B and see whether there are any differences and whether those differences are [significant](https://en.wikipedia.org/wiki/Statistical_significance).
 

@@ -11,7 +11,7 @@ header:
     title: ""
     image_fullwidth: SF-Crime2_Middle.png
     background-color: "#262930"
-    caption: Oliver Twist Positive/Negative Plot Analysis
+    caption: Mapping Sanfrancisco Crime
 image:
     thumb:  SF-Crime.png
     homepage: SF-Crime2_Middle.png

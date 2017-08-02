@@ -4,7 +4,7 @@ title: "About"
 meta_teaser: "Why this Website?"
 teaser: "Why this Website?"
 permalink: "/about/"
-teaser: "I currently work as a sports analyst using bespoke systems to analyse, model, and capitalise on sports markets"
+teaser: "I currently work as a sports analyst using bespoke systems to analyse, model and capitalise on sports markets"
 breadcrumb: true
 header:
   title: "About"

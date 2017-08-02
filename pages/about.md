@@ -4,7 +4,7 @@ title: "About"
 meta_teaser: "Why this Website?"
 teaser: "Why this Website?"
 permalink: "/about/"
-teaser: "Every now and then I work on a new project.<BR><BR>Sometimes it's because I see something that interests me, sometimes it's because I want to try something new..."
+teaser: "I am currently workingh as a sports analyst using bespoke systems to analyse, model, and capitalise on sports markets"
 breadcrumb: true
 header:
   title: "About"
@@ -12,8 +12,10 @@ header:
   caption: ""
 ---
 
-For a while these projects languished in an electronic void, occasionally finished often not, so I decided to post them here.
+I am currently working as a sports analyst, using bespoke systems to analyse, model, and capitalise on sports markets.
 
-I did this partly in case other people are interested, and partly to encourage me to finish them off, and partly because they seemed sad.
+And every now and then I come across something relating to some aspect of data science, machine learning or statistics that interests me, or perhaps I find a gap in my knowledge or skill set.
 
-I hope they'll be useful or interesting to someone but if not then at least they have a cosy home.
+To plug the gap or scratch the knowledge itch I often start a project, as I find the best way of for me of learning something is to do something interesting with it.
+
+So, here is a repository of some of my projects, which will hopefully be of interest or use to someone else.

@@ -11,11 +11,11 @@ header:
     title: ""
     image_fullwidth: R_In_Jupyter.png
     background-color: "#262930"
-    caption: Running Python in an RStudio Notebook
+    caption: Running R in a Jupyter Notebook
 image:
-    thumb:  RStudio.png
-    homepage: RStudio.png
-    caption: Running R in Jupyter Notebook
+    thumb:  R_In_Jupyter.png
+    homepage: R_In_Jupyter.png
+    caption: Running R in a Jupyter Notebook
 categories:
     - projects
 tags:

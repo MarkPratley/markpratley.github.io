@@ -2,7 +2,7 @@
 layout: page-fullwidth
 title: "Running R in a Jupyter Notebook"
 #subheadline: ""
-meta_teaser: "Running R in a Jupyter Notebook""
+meta_teaser: "Running R in a Jupyter Notebook"
 teaser: "Add R capabilites to Jupyter Notebook"
 breadcrumb: true
 comments: true
@@ -28,6 +28,6 @@ tags:
 
 This article shows an easy method for adding R code to a jupyter notebook.
 
-This is further demonstrated by passing a dataframe from python to R, plotting it in ggplot, before passing it back again and plotting it using Seaborn.
+After a brief setup, data is passed from a pandas dataframe to R, plotting it in ggplot, before passing it back again and plotting it using Seaborn.
 
-### The Jupyter Notebook can be acessed [here](http://nbviewer.jupyter.org/github/MarkPratley/R-In-Jupyter-Notebook/blob/master/R_In_Jupyter_Notebook.ipynb)
+The Jupyter Notebook can be accessed [here](http://nbviewer.jupyter.org/github/MarkPratley/R-In-Jupyter-Notebook/blob/master/R_In_Jupyter_Notebook.ipynb)
